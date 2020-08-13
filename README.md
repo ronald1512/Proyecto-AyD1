@@ -8,6 +8,12 @@ Proyecto de grupo 1 del curso de Análisis y diseño 1
 * Bruno Marco José Coronado Morales - 201709362
 * Kevin Alexander Garcia Jachac - 201709155
 
+El rol de todos los integrantes es de programador. 
+
+
+## Documentación de normas y estándares
+Pendiente.
+
 ## Descripción del proyecto
 Ya que actualmente la carrera de ingeniería en Ciencias y Sistemas de la facultad de ingeniería no cuenta con un guía para los estudiantes que empiezan su camino en el área profesional a partir del segundo semestre, se considera que es una buena opción ofrecerle a los estudiantes un sistema que los oriente sobre los cursos que pueden tomar cada semestre ofreciendo la mejor ruta o selección de cursos posibles. Además de esto le permitirá tener un mejor control sobre los cursos que ha logrado aprobar, los cursos que está llevando actualmente y visualizar los que puede sacar a futuro.
 
@@ -28,7 +34,7 @@ Haremos uso de firebase, el cual facilita la escritura y lectura de datos sin ne
 Entonces, al utilizar la base de datos de Firebase, el código para consultar la base de datos se escribe en nuestra aplicación cliente, en nuestro caso, Angular con Ionic. 
 
 ## Documentación de las pruebas 
-... Pendiente
+Pendiente.
 
 ## Documentación de la metodología
-... Pendiente
+Pendiente.
