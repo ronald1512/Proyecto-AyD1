@@ -34,7 +34,11 @@ Haremos uso de firebase, el cual facilita la escritura y lectura de datos sin ne
 Entonces, al utilizar la base de datos de Firebase, el código para consultar la base de datos se escribe en nuestra aplicación cliente, en nuestro caso, Angular con Ionic. 
 
 ## Documentación de las pruebas 
-Pendiente.
+### Pruebas de Aceptación 
+Karma y Jasmine
+
+### Integración continua
+Jenkins
 
 ## Documentación de la metodología
-Pendiente.
+Scrum
