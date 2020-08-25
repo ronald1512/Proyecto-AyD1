@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cargamasiva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label id="profile_image" color="primary" stacked>Cargar Archivo</ion-label>
+    <ion-input type="file" accept="csv" (change)="changeListener($event)"></ion-input>
+  </ion-item>
+</ion-content>
