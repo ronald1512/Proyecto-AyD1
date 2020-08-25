@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Curso} from './curso.interface';
+import { CargamasivaService } from './services/cargamasiva.service';
+import { ActivatedRoute} from '@angular/router';
+import { NavController, LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-cargamasiva',
@@ -7,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CargamasivaPage implements OnInit {
 
-  constructor() { }
+  curso:Curso={
+    codigo:"",
+    nombre:"",
+    creditos:""
+  };
+
+  constructor(private route: ActivatedRoute, private nav: NavController, private cursoService: CargamasivaService, private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
@@ -28,7 +39,38 @@ export class CargamasivaPage implements OnInit {
 
   chargeFile(text:String){
     var lineasCursos=text.split("\n");
-    console.log(lineasCursos)
+    for(let i=0;i<lineasCursos.length;i++){
+      
+      this.curso={codigo:"",nombre:"",creditos:""};
+
+      var camposCursos=lineasCursos[i].split(";");
+        if(lineasCursos[i]!=""&&lineasCursos[i]!=undefined){
+          this.curso.codigo=camposCursos[0];
+          this.curso.nombre=camposCursos[1];
+          this.curso.creditos=camposCursos[2];
+          console.log("------------------")
+          console.log(camposCursos[0])
+          console.log(camposCursos[1])
+          console.log(camposCursos[2])
+          console.log("------------------")
+
+          this.crearCurso(this.curso);
+
+        }
+
+    }
+  }
+
+  async crearCurso(curso:Curso) {
+    console.log(curso)
+    const loading = await this.loadingController.create({
+      message: 'Cargando cursos'
+    });
+    await loading.present();
+    this.cursoService.addCurso(curso).then(() => {
+       loading.dismiss();
+    });
+    
   }
 
 }
