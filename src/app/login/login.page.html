@@ -12,16 +12,17 @@
         <br>
         <div padding>
           <ion-item>
-            <ion-input type="text" class="form" placeholder="Usuario"></ion-input>
+            <ion-input type="text" [(ngModel)]='user.email' placeholder="Correo"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input type="password" placeholder="Contraseña"></ion-input>
+            <ion-input type="password" [(ngModel)]='user.password' placeholder="Contraseña"></ion-input>
           </ion-item>
         </div>
         <br>
         <br>
-        <button class="btn" [routerLink]="['/home']">Continuar</button>
+        
+        <button class="btn" (click)="onLogin()">Login</button>
       </ion-col>
     </ion-row>
     
