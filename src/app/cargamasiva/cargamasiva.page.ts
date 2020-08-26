@@ -15,7 +15,9 @@ export class CargamasivaPage implements OnInit {
   curso:Curso={
     codigo:"",
     nombre:"",
-    creditos:""
+    cursospre:[],
+    creditos:"",
+    creditospre:""
   };
 
   constructor(private route: ActivatedRoute, private nav: NavController, private cursoService: CargamasivaService, private loadingController: LoadingController) { }
@@ -31,7 +33,7 @@ export class CargamasivaPage implements OnInit {
 
     lector.onloadend = (s) => {
       let text: string = lector.result as string;
-      console.log(text);
+      
       this.chargeFile(text)
     };
   }
@@ -41,18 +43,27 @@ export class CargamasivaPage implements OnInit {
     var lineasCursos=text.split("\n");
     for(let i=0;i<lineasCursos.length;i++){
       
-      this.curso={codigo:"",nombre:"",creditos:""};
+      this.curso={codigo:"",nombre:"",cursospre:[],creditos:"",creditospre:""};
 
       var camposCursos=lineasCursos[i].split(";");
-        if(lineasCursos[i]!=""&&lineasCursos[i]!=undefined){
+
+      if(lineasCursos[i]!=""&&lineasCursos[i]!=undefined){
+
           this.curso.codigo=camposCursos[0];
           this.curso.nombre=camposCursos[1];
-          this.curso.creditos=camposCursos[2];
-          console.log("------------------")
-          console.log(camposCursos[0])
-          console.log(camposCursos[1])
-          console.log(camposCursos[2])
-          console.log("------------------")
+
+          var splitCursos=camposCursos[2].split("/");
+          
+         
+
+          for(let z=0;z<splitCursos.length;z++){
+            if(splitCursos[z]!=""&&splitCursos[z]!=undefined){
+              this.curso.cursospre.push(splitCursos[z]);
+            }
+          }
+
+          this.curso.creditos=camposCursos[3];
+          this.curso.creditospre=camposCursos[4]
 
           this.crearCurso(this.curso);
 
@@ -60,6 +71,13 @@ export class CargamasivaPage implements OnInit {
 
     }
   }
+
+
+  
+//codigo;nombre;cursos-pre-requisitos;creditos;creditos-pre-requisito?
+//1;mate2;mate1/social1/tecinas1;123
+
+
 
   async crearCurso(curso:Curso) {
     console.log(curso)
@@ -74,3 +92,6 @@ export class CargamasivaPage implements OnInit {
   }
 
 }
+
+
+
