@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../shared/user.class';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
-import { type } from 'os';
+import { ErrorHandler } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -30,22 +30,57 @@ export class LoginPage implements OnInit {
     this.loading.dismiss();
 
     if (user instanceof User) {
+      console.log('1');
       this.router.navigateByUrl('/');
     } else {
-      console.log(typeof(user));
+      console.log('2');
+      if(user instanceof Error){
 
-      this.toastCtrl.create({
-        header: '¡Incorrecto!',
-        message: 'Correo o contraseña inválidos',
-        position: 'bottom',
-        duration: 2000,
-        color: "danger",
-        animated: true
-      }).then((obj) => {
-        obj.present();
-      });
-      console.log('**Incorrecto');
+        switch(user.code){
+          case "auth/network-request-failed": {
+            this.toastCtrl.create({
+              header: '¡Incorrecto!',
+              message: 'Correo o contraseña inválidos',
+              position: 'bottom',
+              duration: 2000,
+              color: "danger",
+              animated: true
+            }).then((obj) => {
+              obj.present();
+            });
+            break;
+          }
+
+          default:{
+            this.toastCtrl.create({
+              header: '¡Incorrecto!',
+              message: 'Correo o contraseña inválidos',
+              position: 'bottom',
+              duration: 2000,
+              color: "danger",
+              animated: true
+            }).then((obj) => {
+              obj.present();
+            });
+          }
+
+        }
+
+        
+      } else {
+        this.toastCtrl.create({
+          header: 'Error',
+          message: 'No se pudo iniciar sesión',
+          position: 'bottom',
+          duration: 2000,
+          color: "danger",
+          animated: true
+        }).then((obj) => {
+          obj.present();
+        });
+      }
     }
+    console.log('HOla');
   }
 
 }
