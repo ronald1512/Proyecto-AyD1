@@ -19,6 +19,38 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  async onRegister(){
+    this.loading = await this.loadinCtrl.create({
+      message: 'Cargando...',
+    })
+
+    this.loading.present();
+    const user = await this.authSvc.onRegister(this.user);
+    this.loading.dismiss();
+
+    if(user){
+      this.toastCtrl.create({
+        header: 'Registro',
+        message: 'Usuario creado correctamente',
+        position: 'bottom',
+        duration: 2000,
+        animated: true
+      }).then((obj) => {
+        obj.present();
+      });
+    } else {
+      this.toastCtrl.create({
+        header: '¡Incorrecto!',
+        message: 'No se pudo crear el usuario',
+        position: 'bottom',
+        duration: 2000,
+        animated: true
+      }).then((obj) => {
+        obj.present();
+      });
+    }
+  }
+
   async onLogin() {
 
     this.loading = await this.loadinCtrl.create({
@@ -28,10 +60,11 @@ export class LoginPage implements OnInit {
     this.loading.present();
     const user = await this.authSvc.onLogin(this.user);
     this.loading.dismiss();
-
-    if (user instanceof User) {
+    console.log(user);
+    console.log('\n!!');
+    if (user.user) {
       console.log('1');
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home/tab1');
     } else {
       console.log('2');
       if(user instanceof Error){
