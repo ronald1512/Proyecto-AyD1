@@ -24,4 +24,17 @@ export class AuthService {
     }
   }
 
+  async onRegister (user: User){
+    try{
+
+      return await this.afAuth.auth.signInWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+
+    }catch(error){
+      console.log('Error en el registro de usuario',error);
+    }
+  }
+
 }
