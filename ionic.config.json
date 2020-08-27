@@ -1,0 +1,7 @@
+{
+  "name": "Slideroption",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

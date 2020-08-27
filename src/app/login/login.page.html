@@ -1,0 +1,33 @@
+<ion-content>
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <div class="container">
+        <img src="../../assets/img/LOGO_1.png" class="img-slides" />
+      </div>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h2>Iniciar Sesión</h2>
+        </div>
+        <br>
+        <div padding>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]='user.email' placeholder="Correo"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="password" [(ngModel)]='user.password' placeholder="Contraseña"></ion-input>
+          </ion-item>
+        </div>
+        <br>
+        <br>
+        
+        <button class="btn" (click)="onLogin()">Login</button>
+        <button class="btn" (click)="onRegister()">Test</button>
+      </ion-col>
+    </ion-row>
+    
+    
+  </ion-grid>
+
+</ion-content>
