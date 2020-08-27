@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Curso } from '../curso.interface';
+import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
 
 @Injectable({
@@ -15,21 +16,27 @@ export class CargamasivaService {
   private cursos: Observable<Curso[]>;
 
   constructor(db:AngularFirestore) { 
-    this.Collection = db.collection<Curso>('cursos');
-    this.cursos = this.Collection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return {id, ...data};
-        });
-      })
-    );
+    if(db){
+      this.Collection = db.collection<Curso>('cursos');
+      this.cursos = this.Collection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return {id, ...data};
+          });
+        })
+      );
+    }
   }
 
 
   getCursos(){
     return this.cursos;
+  }
+
+  getCollection(){
+    return this.Collection;
   }
 
   getCurso(id: string){
@@ -46,8 +53,5 @@ export class CargamasivaService {
   
   removeTodo(id: string){
     return this.Collection.doc(id).delete();
-  }
-
-
-
+  }  
 }
