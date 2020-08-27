@@ -66,8 +66,7 @@ export class LoginPage implements OnInit {
       console.log('1');
       this.router.navigateByUrl('/home/tab1');
     } else {
-      console.log('2');
-      if(user instanceof Error){
+      if(user.code){
 
         switch(user.code){
           case "auth/network-request-failed": {
