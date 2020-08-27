@@ -12,7 +12,7 @@ El rol de todos los integrantes es de programador.
 
 
 ## Documentación de normas y estándares
-Pendiente.
+Estándares de GitFlow.
 
 ## Descripción del proyecto
 Ya que actualmente la carrera de ingeniería en Ciencias y Sistemas de la facultad de ingeniería no cuenta con un guía para los estudiantes que empiezan su camino en el área profesional a partir del segundo semestre, se considera que es una buena opción ofrecerle a los estudiantes un sistema que los oriente sobre los cursos que pueden tomar cada semestre ofreciendo la mejor ruta o selección de cursos posibles. Además de esto le permitirá tener un mejor control sobre los cursos que ha logrado aprobar, los cursos que está llevando actualmente y visualizar los que puede sacar a futuro.
