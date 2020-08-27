@@ -1,6 +1,12 @@
 /*================================== MEDIA QUERIES, FOR ONLY DESKTOPS ==============================*/
 $height100: 100%;
 
+.red-toast{
+    --background:#FF4127;
+    --border-radius:1px;
+    --color:#fff;
+}
+
 .img-slides {
     width: 100%;
     height: 25%;
@@ -63,6 +69,12 @@ ion-row {
 
 /*================================== MEDIA QUERIES, FOR ONLY IPHONE, ANDROID, ETC.. ==============================*/
 @media only screen and (min-width: 320px) and (max-width: 812px) {
+
+    .red-toast{
+        --background:#FF4127;
+        --border-radius:1px;
+        --color:#fff;
+    }
 
     .img-slides {
         width: 80%;
