@@ -3,7 +3,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { SlidePage } from './slide.page';
 
-/*describe('SlidePage', () => {
+
+/*
+describe('SlidePage', () => {
   let component: SlidePage;
   let fixture: ComponentFixture<SlidePage>;
 
@@ -21,4 +23,7 @@ import { SlidePage } from './slide.page';
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+
+});
+
+*/

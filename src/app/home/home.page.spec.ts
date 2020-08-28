@@ -3,7 +3,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
 
-/*describe('HomePage', () => {
+/*
+describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
 
@@ -21,4 +22,7 @@ import { HomePage } from './home.page';
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+
+});
+
+*/
