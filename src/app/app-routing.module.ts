@@ -22,6 +22,10 @@ const routes: Routes = [
   },  {
     path: 'cargamasiva',
     loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   }
 
 ];
