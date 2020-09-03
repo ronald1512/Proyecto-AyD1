@@ -37,6 +37,7 @@ export class RegistroPage implements OnInit {
       }).then((obj) => {
         obj.present();
       });
+      this.router.navigateByUrl('/home/tab1');
     } else {
       this.toastCtrl.create({
         header: '¡Incorrecto!',
