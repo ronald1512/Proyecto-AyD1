@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
-  },  {
+  },
+  {
     path: 'cargamasiva',
     loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
   }
