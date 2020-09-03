@@ -3,7 +3,7 @@ import { CursosAprobados} from './services/cursos-aprobados.interface';
 import { CursosAprobadosService } from './services/cursos-aprobados.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
-
+//import { AngularFireAuth, } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-carga-cursos-aprobados',
@@ -44,6 +44,7 @@ export class CargaCursosAprobadosPage implements OnInit {
   chargeFile(text:String){
    
     //Falta agregar carnet obtenido de LocalStorage
+    //console.log(this.auth.currentUser)
       
       this.curso={carnetEstudiante:"", cursosAprobados:[]};
 
@@ -66,7 +67,7 @@ export class CargaCursosAprobadosPage implements OnInit {
   async crearCurso(curso:CursosAprobados) {
     console.log(curso)
     const loading = await this.loadingController.create({
-      message: 'Cargando cursos'
+      message: 'Cargando cursos aprobados'
     });
     await loading.present();
     this.cursoService.addCurso(curso).then(() => {
