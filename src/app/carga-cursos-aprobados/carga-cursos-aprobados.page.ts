@@ -76,4 +76,16 @@ export class CargaCursosAprobadosPage implements OnInit {
     
   }
 
+
+  obtenerCursos(){
+    this.cursoService.getCursos().subscribe(res =>{
+      console.log("Datos: ")
+      console.log(res)
+    });
+  }
+
+  actualizarCursos(){
+    //this.cursoService.updateCurso(this.cursoService,id)
+  }
+
 }

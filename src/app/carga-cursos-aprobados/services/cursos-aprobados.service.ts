@@ -41,7 +41,7 @@ export class CursosAprobadosService {
     return this.Collection.doc<CursosAprobados>(id).valueChanges();
   }
 
-  updateTodo(curso:CursosAprobados, id: string){
+  updateCurso(curso:CursosAprobados, id: string){
     return this.Collection.doc(id).update(curso);
   }
   
