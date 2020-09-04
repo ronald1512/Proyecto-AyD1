@@ -15,7 +15,7 @@ export class SettingsService {
   constructor(db: AngularFirestore) { 
     if(db){
       this.Collection = db.collection<Settings>('usuarios');
-      this.cursos = this.Collection.snapshotChanges().pipe(
+      this.settings = this.Collection.snapshotChanges().pipe(
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
@@ -25,5 +25,17 @@ export class SettingsService {
         })
       );
     }
+  }
+
+  getSettings(){
+    return this.settings;
+  }
+
+  getCollection(){
+    return this.Collection;
+  }
+
+  getSetting(id: string){
+    return this.Collection.doc<Settings>(id).valueChanges();
   }
 }
