@@ -37,4 +37,12 @@ export class AuthService {
     }
   }
 
+  async logout(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+    } catch (error) {
+      console.log('Error ->', error);
+    }
+  }
+
 }

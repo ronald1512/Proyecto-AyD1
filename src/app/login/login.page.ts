@@ -33,7 +33,6 @@ export class LoginPage implements OnInit {
     console.log(user);
     console.log('\n!!');
     if (user.user) {
-      console.log('1');
       this.router.navigateByUrl('/home/tab1');
     } else {
       if(user.code){
