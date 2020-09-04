@@ -38,4 +38,16 @@ export class SettingsService {
   getSetting(id: string){
     return this.Collection.doc<Settings>(id).valueChanges();
   }
+
+  updateTodo(setting: Settings, id: string){
+    return this.Collection.doc(id).update(setting);
+  }
+  
+  addCurso(setting: Settings){
+    return this.Collection.add(setting);
+  }
+  
+  removeTodo(id: string){
+    return this.Collection.doc(id).delete();
+  }
 }
