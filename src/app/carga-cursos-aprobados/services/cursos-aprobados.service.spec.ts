@@ -10,3 +10,22 @@ describe('CursosAprobadosService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+
+let cargaMasiva = null;
+
+describe("Carga Masiva Service", () => {
+  beforeEach(() => {
+    cargaMasiva = new CursosAprobadosService(null);
+  })
+
+
+  it("cargaMasiva.getCursos() deberia estar undefined", () => {
+    expect(typeof cargaMasiva.getCursos()).toBe("undefined");
+  });
+
+  it("cargaMasiva.getCollection() deberia estar undefined", () => {
+    expect(typeof cargaMasiva.getCollection()).toBe("undefined");
+  });
+
+});
