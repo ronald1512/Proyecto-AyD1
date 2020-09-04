@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SettingsService {
-
+  /*
   private Collection: AngularFirestoreCollection<Settings>;
   private settings: Observable<Settings[]>;
 
@@ -50,4 +50,5 @@ export class SettingsService {
   removeTodo(id: string){
     return this.Collection.doc(id).delete();
   }
+  */
 }
