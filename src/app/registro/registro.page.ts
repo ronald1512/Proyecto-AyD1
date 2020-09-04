@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { User } from '../shared/user.class';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
-import { ErrorHandler } from '@angular/core';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,21 +8,24 @@ import { Router } from '@angular/router';
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
+
+
 export class RegistroPage implements OnInit {
   toast; loading;
-  user: User = new User();
-  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
+
+  constructor(private toastCtrl: ToastController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService) { }
 
   ngOnInit() {
   }
 
-  async onRegister(){
+  async onRegister(email, password){
     this.loading = await this.loadinCtrl.create({
       message: 'Cargando...',
     })
-
+    alert(email);
+    console.log(password);
     this.loading.present();
-    const user = await this.authSvc.onRegister(this.user);
+    const user = await this.authSvc.register(email.value, password.value);
     this.loading.dismiss();
 
     if(user){
