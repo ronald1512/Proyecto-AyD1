@@ -3,6 +3,8 @@ import { CursosAprobados} from './services/cursos-aprobados.interface';
 import { CursosAprobadosService } from './services/cursos-aprobados.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+import { forkJoin, VirtualTimeScheduler } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 //import { AngularFireAuth, } from '@angular/fire/auth';
 
 @Component({
@@ -16,6 +18,8 @@ export class CargaCursosAprobadosPage implements OnInit {
     carnetEstudiante:"",
     cursosAprobados:[]
     };
+
+    idDocumento:string="";
 
   constructor(private route: ActivatedRoute, private nav: NavController, private cursoService: CursosAprobadosService, private loadingController: LoadingController) { }
 
@@ -51,28 +55,24 @@ export class CargaCursosAprobadosPage implements OnInit {
       var cursos=text.split(";");
 
       for(let i=0;i<cursos.length;i++){
-
         if(cursos[i]!=""&&cursos[i]!=undefined){
-
           this.curso.cursosAprobados.push(cursos[i]);
-          this.crearCurso(this.curso);
-
         }
-
       }
 
+      this.crearCurso(this.curso);
+      //this.comprobarExistencia();
    
   }
 
   async crearCurso(curso:CursosAprobados) {
-    console.log(curso)
+    console.log("entraaaaaaaaa")
     const loading = await this.loadingController.create({
       message: 'Cargando cursos aprobados'
     });
     await loading.present();
-    this.cursoService.addCurso(curso).then(() => {
-       loading.dismiss();
-    });
+    loading.dismiss();
+    this.cursoService.addCurso(curso)
     
   }
 
@@ -84,8 +84,33 @@ export class CargaCursosAprobadosPage implements OnInit {
     });
   }
 
-  actualizarCursos(){
-    //this.cursoService.updateCurso(this.cursoService,id)
+  comprobarExistencia(){
+    this.cursoService.getCursos().subscribe(async res=>{
+      var bool1=false;
+      this.curso.carnetEstudiante="201709155"
+      //Cambiar el carnet quemado por el carnet del usuario logueado
+      for(let i=0;i<res.length;i++){
+        if(res[i].carnetEstudiante=="201709155"){
+          bool1=true;
+          break;
+        }
+      }
+
+      if(bool1==true){
+        console.log("entra2")
+      }else{
+        console.log("entraaaaaaaaa")
+      const loading = await this.loadingController.create({
+      message: 'Cargando cursos aprobados'
+    });
+      await loading.present();
+      loading.dismiss();
+      this.cursoService.addCurso(this.curso)
+      }
+
+    });
+    
+  
   }
 
 }
