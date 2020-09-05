@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 })
 
 export class SettingsPage implements OnInit {
-  user: User;
+  user: User= {uid:'', email:'', displayName:''};
   constructor(public alertController: AlertController,private userService: UserService) { }
 
   ngOnInit() {
