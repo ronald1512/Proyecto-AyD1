@@ -22,6 +22,10 @@ const routes: Routes = [
   },  {
     path: 'cargamasiva',
     loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
+  },
+  {
+    path: 'carga-cursos-aprobados',
+    loadChildren: () => import('./carga-cursos-aprobados/carga-cursos-aprobados.module').then( m => m.CargaCursosAprobadosPageModule)
   }
 
 ];
