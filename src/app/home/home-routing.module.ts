@@ -32,7 +32,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: "tab3",
+        path: "perfil",
         children: [
           {
             path: "",
