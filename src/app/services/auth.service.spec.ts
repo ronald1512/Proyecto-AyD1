@@ -16,6 +16,6 @@ describe('AuthService', () => {
   });
 
   it('Validar correo incorrecto', () => {
-    expect(service.verificarCorreo('holacorreo.com')).toBeFalse();
+    expect(service.verificarCorreo('holacorreo.com')).toBeFalsy();
   });
 });
