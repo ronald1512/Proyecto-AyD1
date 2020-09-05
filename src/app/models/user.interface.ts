@@ -1,3 +1,5 @@
-export interface Settings {
-    correo: string;
+export interface User {
+    uid: string;
+    email: string;
+    displayName: string;
 }
