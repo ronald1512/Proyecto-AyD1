@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { User } from '../shared/user.class';
+//import { User } from '../shared/user.class';
+import { User } from '../models/user.interface'
 import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-settings',
@@ -9,14 +10,15 @@ import { UserService } from '../services/user.service';
 })
 
 export class SettingsPage implements OnInit {
-  user: User = new User();
+  user: User;
   constructor(public alertController: AlertController,private userService: UserService) { }
 
   ngOnInit() {
   }
 
   checkdata(){
-    if(SettingsPage.checkemail(this.user.email) && SettingsPage.checkname(this.user.name)){
+    if(SettingsPage.checkemail(this.user.email) && SettingsPage.checkname(this.user.displayName)){
+      //this.userService.updateUser(this.user, '2m0rjlG4hhQliuzEWDJ3xlrH0Kz1')
       this.fineAlert()
     }else{
       this.failAlert();

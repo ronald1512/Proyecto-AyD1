@@ -26,4 +26,8 @@ export class UserService {
       );
     }
   }
+
+  updateUser(user: User, id: string){
+    return this.Collection.doc(id).update(user);
+  }
 }
