@@ -15,15 +15,18 @@ export class AuthService {
 
   public user$: Observable<User>;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
-    this.user$ = this.afAuth.authState.pipe(
-      switchMap((user) => {
-        if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        }
-        return of(null);
-      })
-    )
+  constructor(private afAuth?: AngularFireAuth, private afs?: AngularFirestore) {
+    
+    if(afAuth && afs){
+      this.user$ = this.afAuth.authState.pipe(
+        switchMap((user) => {
+          if (user) {
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          }
+          return of(null);
+        })
+      )
+    }
   }
 
   async resetPassword(email: string): Promise<void> {
@@ -89,6 +92,15 @@ export class AuthService {
 
   redirectUser(insVerified: boolean){
 
+  }
+
+  verificarCorreo(correo: string): boolean {
+
+    if(correo.includes('@')){
+      return true;
+    }
+
+    return false;
   }
 
 }

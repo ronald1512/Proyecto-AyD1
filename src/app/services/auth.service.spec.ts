@@ -3,26 +3,19 @@ import { AngularFireAuth} from '@angular/fire/auth';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 
-
-let Asvc = null;
-
 describe('AuthService', () => {
 
-  beforeEach(() =>{
-    Asvc = new AuthService();
+  let service: AuthService;
+
+  beforeEach(() => {
+    service = new AuthService();
   });
 
-  it('debería mostrar 0', () => {  
-    expect(Asvc.suma("")).toBe(0);
+  it('Validar correo correcto', () => {
+    expect(service.verificarCorreo('hola@correo.com')).toBeTruthy();
   });
 
-  it('debería mostrar 5', () => { 
-    var res =  Asvc.suma("5");
-    expect(res).toBe(5);
-  });
-
-  it('debería mostrar 7', () => { 
-    var res =  Asvc.suma("5,2");
-    expect(res).toBe(7);
+  it('Validar correo incorrecto', () => {
+    expect(service.verificarCorreo('holacorreo.com')).toBeFalse();
   });
 });
