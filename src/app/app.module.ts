@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
+    AngularFirestore,
     StatusBar,
     AngularFirestore,
     SplashScreen,
