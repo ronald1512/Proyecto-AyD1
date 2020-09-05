@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from './settings.service';
 import { AlertController } from '@ionic/angular';
 import { User } from '../shared/user.class';
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
@@ -10,7 +10,7 @@ import { User } from '../shared/user.class';
 
 export class SettingsPage implements OnInit {
   user: User = new User();
-  constructor(public alertController: AlertController,private settingsService: SettingsService) { }
+  constructor(public alertController: AlertController,private userService: UserService) { }
 
   ngOnInit() {
   }
