@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 //import { User } from '../shared/user.class';
 import { User } from '../models/user.interface'
-import { UserService } from '../services/user.service';
+//import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 
 export class SettingsPage implements OnInit {
   user: User= {uid:'', email:'', displayName:''};
-  constructor(public alertController: AlertController,private userService: UserService) { }
+  constructor(public alertController: AlertController) { } //,private userService: UserService
 
   ngOnInit() {
   }
