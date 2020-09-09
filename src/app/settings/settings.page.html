@@ -16,8 +16,8 @@
 
     <ion-row>
       <ion-col size="12">
-        <h2 class="color-hello">
-          Tu perfil personal, <span class="color-amanda">Ronald!</span>
+        <h2 *ngFor="let order of usuarios" class="color-hello">
+          <a *ngIf ="order.uid ==user.uid">Tu perfil personal, <span class="color-amanda">{{ order.displayName }}!</span> </a>
         </h2>
         <label class="subtitle-txt">Estas son tus datos actuales!</label>
       </ion-col>
@@ -37,15 +37,6 @@
         <ion-item lines="none" color="medium" class="div-name">
           <ion-label >Correo</ion-label>
           <ion-input type="text" [(ngModel)]='user.email' placeholder="Correo"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-item lines="none" color="medium" class="div-name">
-          <ion-label>Contraseña</ion-label>
-          <ion-input placeholder="placeholder" type="password" aria-readonly="true"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

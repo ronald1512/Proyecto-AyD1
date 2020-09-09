@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-//import { User } from '../shared/user.class';
 import { User } from '../models/user.interface'
-//import { UserService } from '../services/user.service';
+import { UserService } from '../services/user.service';
+import { from } from 'rxjs';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
@@ -11,14 +12,41 @@ import { User } from '../models/user.interface'
 
 export class SettingsPage implements OnInit {
   user: User= {uid:'', email:'', displayName:''};
-  constructor(public alertController: AlertController) { } //,private userService: UserService
+  usuarios: Array<User>=[];
+  constructor(public alertController: AlertController, private userService: UserService) { } 
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.getUsers(); // inicializamos todo cuando la vista es cargada por primera vez
+    const first = await this.actualizarCurrent();
+
+    for (const iterator of this.usuarios) {
+      console.log(iterator);
+      if(iterator.uid==this.user.uid){
+        this.user.displayName=iterator.displayName;
+        break;
+      }
+    }
   }
+
+  async actualizarCurrent(){
+    let response = this.userService.getCurrentUser().then(function (firebaseUser) {
+      console.log("Encontrado!");
+      return firebaseUser;
+    });
+
+    const observable= from(response);
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
+  }
+
+
+  async getUsers(){
+    this.usuarios= await this.userService.getUserData();
+  }
+
 
   checkdata(){
     if(SettingsPage.checkemail(this.user.email) && SettingsPage.checkname(this.user.displayName)){
-      //this.userService.updateUser(this.user, '2m0rjlG4hhQliuzEWDJ3xlrH0Kz1')
+      this.userService.updateUser(this.user, this.user.uid)
       this.fineAlert()
     }else{
       this.failAlert();
