@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from '../shared/user.class';
+import { User } from '../shared/user.interface';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 import { ErrorHandler } from '@angular/core';
 
@@ -12,107 +12,37 @@ import { ErrorHandler } from '@angular/core';
 })
 export class LoginPage implements OnInit {
   toast; loading;
-  user: User = new User();
 
   constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
 
   ngOnInit() {
   }
 
-  async onRegister(){
-    this.loading = await this.loadinCtrl.create({
-      message: 'Cargando...',
-    })
-
-    this.loading.present();
-    const user = await this.authSvc.onRegister(this.user);
-    this.loading.dismiss();
-
-    if(user){
-      this.toastCtrl.create({
-        header: 'Registro',
-        message: 'Usuario creado correctamente',
-        position: 'bottom',
-        duration: 2000,
-        animated: true
-      }).then((obj) => {
-        obj.present();
-      });
-    } else {
-      this.toastCtrl.create({
-        header: '¡Incorrecto!',
-        message: 'No se pudo crear el usuario',
-        position: 'bottom',
-        duration: 2000,
-        animated: true
-      }).then((obj) => {
-        obj.present();
-      });
-    }
-  }
-
-  async onLogin() {
+  async onLogin(email, password) {
 
     this.loading = await this.loadinCtrl.create({
       message: 'Cargando...',
     })
 
     this.loading.present();
-    const user = await this.authSvc.onLogin(this.user);
+    const user = await this.authSvc.login(email.value, password.value);
     this.loading.dismiss();
     console.log(user);
     console.log('\n!!');
-    if (user.user) {
-      console.log('1');
+    if (user) {
       this.router.navigateByUrl('/home/tab1');
     } else {
-      if(user.code){
-
-        switch(user.code){
-          case "auth/network-request-failed": {
-            this.toastCtrl.create({
-              header: '¡Incorrecto!',
-              message: 'Correo o contraseña inválidos',
-              position: 'bottom',
-              duration: 2000,
-              color: "danger",
-              animated: true
-            }).then((obj) => {
-              obj.present();
-            });
-            break;
-          }
-
-          default:{
-            this.toastCtrl.create({
-              header: '¡Incorrecto!',
-              message: 'Correo o contraseña inválidos',
-              position: 'bottom',
-              duration: 2000,
-              color: "danger",
-              animated: true
-            }).then((obj) => {
-              obj.present();
-            });
-          }
-
-        }
-
-        
-      } else {
-        this.toastCtrl.create({
-          header: 'Error',
-          message: 'No se pudo iniciar sesión',
-          position: 'bottom',
-          duration: 2000,
-          color: "danger",
-          animated: true
-        }).then((obj) => {
-          obj.present();
-        });
-      }
+      this.toastCtrl.create({
+        header: '¡Incorrecto!',
+        message: 'Correo o contraseña inválidos',
+        position: 'bottom',
+        duration: 2000,
+        color: "danger",
+        animated: true
+      }).then((obj) => {
+        obj.present();
+      });
     }
-    console.log('HOla');
-  }
 
+  }
 }

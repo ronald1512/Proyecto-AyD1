@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-//import { CargamasivaPage } from './cargamasiva.page';
+import { RegistroPage } from './registro.page';
 
-/*describe('CargamasivaPage', () => {
-  let component: CargamasivaPage;
-  let fixture: ComponentFixture<CargamasivaPage>;
+describe('RegistroPage', () => {
+  /*let component: RegistroPage;
+  let fixture: ComponentFixture<RegistroPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CargamasivaPage ],
+      declarations: [ RegistroPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CargamasivaPage);
+    fixture = TestBed.createComponent(RegistroPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-});*/
+  });*/
+});

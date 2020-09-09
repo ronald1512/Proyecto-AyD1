@@ -7,7 +7,7 @@
       </div>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h2>Iniciar Sesión</h2>
+          <h2>Registro</h2>
         </div>
         <br>
         <div padding>
@@ -22,8 +22,8 @@
         <br>
         <br>
         
-        <button class="btn" (click)="onLogin(email, password)">Login</button>
-        <button class="btn" [routerLink]="['/registro']">Registrarme</button>
+        <button class="btn" (click)="onRegister(email, password)">Registrarme</button>
+        <button class="btn" [routerLink]="['/login']">Login</button>
       </ion-col>
     </ion-row>
     

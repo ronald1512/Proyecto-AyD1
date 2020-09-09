@@ -27,7 +27,7 @@ export class CargamasivaPage implements OnInit {
 
   file: File;
  changeListener($event) : void {
-   console.log('ghakasa');
+   
     this.file = $event.target.files[0];
     let lector = new FileReader();
     lector.readAsText(this.file);

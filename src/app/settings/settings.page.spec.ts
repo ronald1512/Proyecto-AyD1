@@ -4,21 +4,18 @@ import { IonicModule } from '@ionic/angular';
 import { SettingsPage } from './settings.page';
 
 describe('SettingsPage', () => {
-  let component: SettingsPage;
-  let fixture: ComponentFixture<SettingsPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SettingsPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+  let email="ronaldgabriel3@hotmail.es";
+  let name="ronald romero";
+  let result=SettingsPage.checkemail(email);
+  let result2=SettingsPage.checkname(name);
 
-    fixture = TestBed.createComponent(SettingsPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("Debe contener '@'", () =>{
+    expect(result).toBeTruthy();
   });
+
+  it("El nombre de usuario debe ser de mas de un caracter'", () =>{
+    expect(result2).toBeTruthy();
+  });
+
 });

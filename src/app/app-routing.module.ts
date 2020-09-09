@@ -19,11 +19,19 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
-  },  {
+  },
+  {
     path: 'cargamasiva',
     loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
+  },
+  {
+    path: 'carga-cursos-aprobados',
+    loadChildren: () => import('./carga-cursos-aprobados/carga-cursos-aprobados.module').then( m => m.CargaCursosAprobadosPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   }
-
 ];
 
 @NgModule({
