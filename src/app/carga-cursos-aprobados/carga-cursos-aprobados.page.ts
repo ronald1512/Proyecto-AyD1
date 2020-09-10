@@ -84,7 +84,7 @@ export class CargaCursosAprobadosPage implements OnInit {
     });
   }
 
-  comprobarExistencia(){
+  /*comprobarExistencia(){
     this.cursoService.getCursos().subscribe(async res=>{
       var bool1=false;
       this.curso.carnetEstudiante="201709155"
@@ -111,6 +111,6 @@ export class CargaCursosAprobadosPage implements OnInit {
     });
     
   
-  }
+  }*/
 
 }
