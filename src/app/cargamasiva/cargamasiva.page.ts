@@ -86,9 +86,7 @@ export class CargamasivaPage implements OnInit {
       message: 'Cargando cursos'
     });
     await loading.present();
-    this.cursoService.addCurso(curso).then(() => {
-       loading.dismiss();
-    });
+    this.cursoService.addCurso(curso,loading);
     
   }
 

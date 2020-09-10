@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CursosAprobados } from './cursos-aprobados.interface';
@@ -10,46 +10,34 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 })
 export class CursosAprobadosService {
 
-  private Collection: AngularFirestoreCollection<CursosAprobados>;
-  private cursos: Observable<CursosAprobados[]>;
-
-  constructor(db:AngularFirestore) { 
-    if(db){
-      this.Collection = db.collection<CursosAprobados>('cursos-aprobados');
-      this.cursos = this.Collection.snapshotChanges().pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data();
-            const id = a.payload.doc.id;
-            return {id, ...data};
-          });
-        })
-      );
-    }
+  constructor(private firestore: AngularFirestore) { 
+    
   }
 
 
   getCursos(){
-    return this.cursos;
+    return this.firestore.collection("cursos-aprobados").snapshotChanges();
   }
 
-  getCollection(){
-    return this.Collection;
-  }
 
   getCurso(id: string){
-    return this.Collection.doc<CursosAprobados>(id).valueChanges();
+    //return this.Collection.doc<CursosAprobados>(id).valueChanges();
+    return null;
   }
 
   updateCurso(curso:CursosAprobados, id: string){
-    return this.Collection.doc(id).update(curso);
+    //return this.Collection.doc(id).update(curso);
+    return null;
   }
   
   addCurso(curso: CursosAprobados){
-    return this.Collection.add(curso);
+    return new Promise<any>((resolve, reject) => {
+      this.firestore
+        .collection("cursos-aprobados")
+        .add(curso)
+        .then(res => {}, err => reject(err));
+    });
   }
   
-  removeTodo(id: string){
-    return this.Collection.doc(id).delete();
-  }  
+ 
 }
