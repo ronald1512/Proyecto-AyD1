@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'cursos-pendientes',
+    loadChildren: () => import('./cursos-pendientes/cursos-pendientes.module').then( m => m.CursosPendientesPageModule)
   }
+
 ];
 
 @NgModule({
