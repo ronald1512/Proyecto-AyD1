@@ -25,4 +25,12 @@ describe('CursosPendientesService', () => {
     expect(componente.obtenerCursosAprobados()).toBe("")
   });
 
+  it('Validar código del curso correcto', () => {
+    expect(service.verificarCodigoCurso(12234)).toBeTruthy();
+  });
+
+  it('Validar código del curso incorrecto', () => {
+    expect(service.verificarCodigoCurso('adasda')).toBeFalsy();
+  });
+
 });
