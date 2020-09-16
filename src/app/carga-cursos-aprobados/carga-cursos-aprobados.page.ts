@@ -60,7 +60,7 @@ export class CargaCursosAprobadosPage implements OnInit {
       
       this.curso={carnetEstudiante:this.user.uid, cursosAprobados:[]};  //el uid es el identificador para cada usuario
 
-      var cursos=text.split(";");
+      var cursos=CargaCursosAprobadosPage.separarCadena(text);
 
       for(let i=0;i<cursos.length;i++){
         if(cursos[i]!=""&&cursos[i]!=undefined){
@@ -71,6 +71,10 @@ export class CargaCursosAprobadosPage implements OnInit {
       this.crearCurso(this.curso);
       //this.comprobarExistencia();
    
+  }
+
+  public static separarCadena(texto:String):string[]{
+    return texto.split(';');
   }
 
   async crearCurso(curso:CursosAprobados) {
