@@ -15,20 +15,12 @@ export class SettingsPage implements OnInit {
   usuarios: Array<User>=[];
   constructor(public alertController: AlertController, private userService: UserService) { } 
 
-  async ngOnInit() {
+  ngOnInit() {
     this.getUsers(); // inicializamos todo cuando la vista es cargada por primera vez
-    const first = await this.actualizarCurrent();
-
-    for (const iterator of this.usuarios) {
-      console.log(iterator);
-      if(iterator.uid==this.user.uid){
-        this.user.displayName=iterator.displayName;
-        break;
-      }
-    }
+    this.actualizarCurrent();
   }
 
-  async actualizarCurrent(){
+  actualizarCurrent(){
     let response = this.userService.getCurrentUser().then(function (firebaseUser) {
       console.log("Encontrado!");
       return firebaseUser;
@@ -39,8 +31,8 @@ export class SettingsPage implements OnInit {
   }
 
 
-  async getUsers(){
-    this.usuarios= await this.userService.getUserData();
+  getUsers(){
+    this.usuarios= this.userService.getUserData();
   }
 
 

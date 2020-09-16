@@ -3,8 +3,10 @@ import { CursosAprobados} from './services/cursos-aprobados.interface';
 import { CursosAprobadosService } from './services/cursos-aprobados.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
-import { forkJoin, VirtualTimeScheduler } from 'rxjs';
+import { forkJoin, from, VirtualTimeScheduler } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
+import { User } from '../shared/user.interface';
 //import { AngularFireAuth, } from '@angular/fire/auth';
 
 @Component({
@@ -13,7 +15,7 @@ import { mergeMap } from 'rxjs/operators';
   styleUrls: ['./carga-cursos-aprobados.page.scss'],
 })
 export class CargaCursosAprobadosPage implements OnInit {
-
+  user: User= {uid:'', email:'', displayName:''};   //aqui voy a tener los datos del usuario actual
   curso:CursosAprobados={
     carnetEstudiante:"",
     cursosAprobados:[]
@@ -21,9 +23,15 @@ export class CargaCursosAprobadosPage implements OnInit {
 
     idDocumento:string="";
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private cursoService: CursosAprobadosService, private loadingController: LoadingController) { }
+  constructor(private userService: UserService, private cursoService: CursosAprobadosService, private loadingController: LoadingController) { }
 
   ngOnInit() {
+    let response = this.userService.getCurrentUser().then(function (firebaseUser) {
+      console.log("Encontrado!");
+      return firebaseUser;
+    });
+    const observable= from(response);
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
   }
 
 
@@ -50,7 +58,7 @@ export class CargaCursosAprobadosPage implements OnInit {
     //Falta agregar carnet obtenido de LocalStorage
     //console.log(this.auth.currentUser)
       
-      this.curso={carnetEstudiante:"", cursosAprobados:[]};
+      this.curso={carnetEstudiante:this.user.uid, cursosAprobados:[]};  //el uid es el identificador para cada usuario
 
       var cursos=text.split(";");
 
@@ -66,7 +74,6 @@ export class CargaCursosAprobadosPage implements OnInit {
   }
 
   async crearCurso(curso:CursosAprobados) {
-    console.log("entraaaaaaaaa")
     const loading = await this.loadingController.create({
       message: 'Cargando cursos aprobados'
     });
