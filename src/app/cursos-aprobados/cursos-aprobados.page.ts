@@ -32,4 +32,8 @@ nombre:"Social Humanistica 1"
   ngOnInit() {
   }
 
+  public validarCodigoCurso(codigo){
+    return isNaN(codigo)
+  }
+
 }

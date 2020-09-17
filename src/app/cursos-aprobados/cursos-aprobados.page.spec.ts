@@ -3,22 +3,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { CursosAprobadosPage } from './cursos-aprobados.page';
 
+let cursosAprobados = null;
+
 describe('CursosAprobadosPage', () => {
-  let component: CursosAprobadosPage;
-  let fixture: ComponentFixture<CursosAprobadosPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CursosAprobadosPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CursosAprobadosPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  beforeAll(() => {
+    cursosAprobados = new CursosAprobadosPage();
   });
+
+  it('deberia ser falso', () => {
+    expect(cursosAprobados.validarCodigoCurso('1234')).toBeFalsy()
+  })
+
+  it('deberia ser verdadero', () => {
+    expect(cursosAprobados.validarCodigoCurso('1234')).toBeTruthy()
+  })
+
 });
