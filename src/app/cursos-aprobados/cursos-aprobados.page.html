@@ -4,33 +4,40 @@
     <ion-row>
       <ion-col size="10">
         <div>
-        <br>
+          <br>
         </div>
-        <div >
-        
+        <div>
+
           <h1 style="color: black;">Cursos aprobados</h1>
         </div>
       </ion-col>
       <ion-col size="2">
         <div>
-            <ion-icon name="home" ></ion-icon>
-          
+          <ion-icon name="home"></ion-icon>
+
         </div>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-card>
-   <ion-list>
- 
-    <button color="primary" ion-item *ngFor="let item of lista">
-   <ion-icon name="add-circle"></ion-icon>
+        <ion-list>
+          <ion-item-sliding  >
 
-  {{item.codigo}} {{" "}}
-   {{item.nombre}}
-      </button>
 
-   </ion-list>
+
+
+            <ion-item *ngFor="let item of lista">
+              <ion-input  type="text" [(ngModel)]="newItem"> {{item.codigo}} {{item.nombre}}</ion-input>
+           
+              <br>
+              <button (click)='obtenerdatoscurso(item.codigo,item.nombre)'>Agregar</button>
+              
+            </ion-item>
+           
+
+          </ion-item-sliding>
+        </ion-list>
       </ion-card>
 
     </ion-row>
@@ -38,7 +45,7 @@
 
     <br>
 
-    
+
   </ion-grid>
 </ion-content>
 

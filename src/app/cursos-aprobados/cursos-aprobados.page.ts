@@ -27,9 +27,17 @@ nombre:"Social Humanistica 1"
     }
 
   ]
+
+
+  
   constructor() { }
 
   ngOnInit() {
+    
+  }
+
+  obtenerdatoscurso(codigo:String,nombre:String):void{
+    console.log("EL CODIGO ES "+codigo+" Y EL NOMBRE ES "+nombre);
   }
 
   public validarCodigoCurso(codigo){
