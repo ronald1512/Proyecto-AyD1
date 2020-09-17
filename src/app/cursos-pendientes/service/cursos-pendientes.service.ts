@@ -24,4 +24,11 @@ export class CursosPendientesService {
     
   }
 
+  verificarCodigoCurso (codigo: any):boolean {
+    return false;
+  }
+  
+  verificarCursos(){
+
+  }
 }
