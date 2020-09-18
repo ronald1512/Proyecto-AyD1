@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { CargaCursosAprobadosPageRoutingModule } from './carga-cursos-aprobados-routing.module';
 
 import { CargaCursosAprobadosPage } from './carga-cursos-aprobados.page';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CargaCursosAprobadosPageRoutingModule,
-    AngularFireAuth
+    CargaCursosAprobadosPageRoutingModule
   ],
   declarations: [CargaCursosAprobadosPage]
 })
