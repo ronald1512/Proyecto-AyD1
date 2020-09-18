@@ -39,9 +39,26 @@ nombre:"Social Humanistica 1"
 
   obtenerdatoscurso(codigo: string,nombre:String):void{
     if(this.codigoCursoValido(codigo)){
-     
+     this.cursos_aprobados.push(codigo)
+     this.toastCtrl.create({
+       header: 'Cursos Aprobados',
+       message: 'Curso agregado a aprobados',
+       position: 'bottom',
+       duration: 2000,
+       animated: true
+     }).then((obj) => {
+       obj.present();
+     });
     }else{
-      
+      this.toastCtrl.create({
+        header: 'Ocurrio un error!',
+        message: 'No se ha podido agregar el curso',
+        position: 'bottom',
+        duration: 2000,
+        animated: true
+      }).then((obj) => {
+        obj.present();
+      });
     }
   }
 
