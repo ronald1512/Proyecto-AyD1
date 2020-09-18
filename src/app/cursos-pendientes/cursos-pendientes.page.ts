@@ -11,7 +11,15 @@ import {CursosAprobados} from '../carga-cursos-aprobados/services/cursos-aprobad
 })
 export class CursosPendientesPage implements OnInit {
   aprobados:CursosAprobados;
-  arreglo:[]
+  arregloCursos:Curso[]=[];
+  
+  curso:Curso={
+    codigo:"",
+    nombre:"",
+    cursospre:[],
+    creditos:"",
+    creditospre:""
+  };
   constructor(private servicio:CursosPendientesService) { }
 
   ngOnInit() {
@@ -47,7 +55,28 @@ export class CursosPendientesPage implements OnInit {
         }
 
         let tmp=this.servicio.comparacionCursos(array1,array3)
-        console.log(tmp)
+        
+        for(let z=0;z<tmp.length;z++){
+          this.curso={
+            codigo:"",
+            nombre:"",
+            cursospre:[],
+            creditos:"",
+            creditospre:""
+          };
+          this.curso.codigo=tmp[z].codigo;
+          this.curso.nombre=tmp[z].nombre;
+          this.curso.cursospre=tmp[z].cursospre;
+          this.curso.creditos=tmp[z].creditos;
+          this.curso.creditospre=tmp[z].creditospre;
+
+
+          this.arregloCursos.push(this.curso);
+
+        }
+        console.log(this.arregloCursos);
+
+
       })
     })
   }

@@ -7,11 +7,6 @@ export class CursosPendientesService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  lecturaArchivo():any[]{
-    //Sirve para pruebas
-    return[];
-  }
-  
   obtenerCursosAprobados(){
     return this.firestore.collection("cursos-aprobados").snapshotChanges();
   }
