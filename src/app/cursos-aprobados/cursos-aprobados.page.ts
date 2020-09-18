@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cursos-aprobados',
@@ -28,20 +29,24 @@ nombre:"Social Humanistica 1"
 
   ]
 
-
+  private cursos_aprobados: string[] = [];
   
-  constructor() { }
+  constructor(private toastCtrl: ToastController) { }
 
   ngOnInit() {
     
   }
 
-  obtenerdatoscurso(codigo:String,nombre:String):void{
-    console.log("EL CODIGO ES "+codigo+" Y EL NOMBRE ES "+nombre);
+  obtenerdatoscurso(codigo: string,nombre:String):void{
+    if(this.codigoCursoValido(codigo)){
+     
+    }else{
+      
+    }
   }
 
-  public validarCodigoCurso(codigo){
-    return isNaN(codigo)
+  public codigoCursoValido(codigo){
+    return !isNaN(codigo)
   }
 
 }
