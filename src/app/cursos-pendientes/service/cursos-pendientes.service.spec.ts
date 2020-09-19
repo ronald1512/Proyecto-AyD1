@@ -26,7 +26,6 @@ describe('CursosPendientesService', () => {
 
 
   it('Algoritmo de comparación de cursos', () => {
-
     curso.codigo = '0011';
     curso.creditos = '2';
     curso.cursospre.push('0009')
@@ -43,18 +42,22 @@ describe('CursosPendientesService', () => {
 
     let retorno2 = ['0011']
 
+    console.log('Debería ser 1')
+
     expect(componente.comparacionCursos(arregloCursos, retorno2).length).toEqual(1);
   }
     )
 
   it('Metodo de obtención de cursos del área de sistemas', () => {
     componente.obtenerCursos().subscribe(res=>{
+      console.log('Debería ser 62')
       expect(res.length).toBe(62)
     })
   });
 
   it('Metodo de obtención de cursos aprobados', () => {
     componente.obtenerCursosAprobados().subscribe(res=>{
+    console.log('Debería ser 5')
       let array2=[];
       array2.push(res[0].payload.doc.data());
       expect(array2[0].cursosAprobados.length).toBe(5)

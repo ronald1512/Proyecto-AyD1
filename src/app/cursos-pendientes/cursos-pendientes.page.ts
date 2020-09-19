@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CursosPendientesService} from './service/cursos-pendientes.service'
 import {Curso} from '../cargamasiva/curso.interface'
 import {CursosAprobados} from '../carga-cursos-aprobados/services/cursos-aprobados.interface'
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -20,10 +21,53 @@ export class CursosPendientesPage implements OnInit {
     creditos:"",
     creditospre:""
   };
-  constructor(private servicio:CursosPendientesService) { }
+  constructor(private servicio:CursosPendientesService,public toastController: ToastController) { }
 
   ngOnInit() {
     this.verificarCursos() 
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async presentToastWithOptions(codigo) {
+
+    let cursoR=await  this.buscarCurso(codigo);
+
+    const toast = await this.toastController.create({
+      header: 'Codigo Curso: '+codigo,
+      message: 'Nombre Curso: '+cursoR.nombre+'\n Creditos: '+cursoR.creditos,
+      position: 'top',
+      buttons: [
+        {
+          text: 'Cerrar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    toast.mode="md";
+    toast.color="dark";
+    toast.present();
+  }
+
+
+
+  async buscarCurso(codigo){
+
+    for(let i=0;i<this.arregloCursos.length;i++){
+      if(this.arregloCursos[i].codigo==codigo){
+        return this.arregloCursos[i];
+      }
+    }
+    return null;
   }
 
   
