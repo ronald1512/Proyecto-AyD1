@@ -47,6 +47,14 @@ export class CursosAprobadosPage implements OnInit {
     console.log(this.cursosAprobados);
     this.getTodos();
     // console.log("TODOS SON" + this.getTodos());
+
+    let response = this.userService.getCurrentUser().then(function (firebaseUser) {
+      console.log("Encontrado!");
+      return firebaseUser;
+    });
+    const observable= from(response);
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
+
   }
 
 
@@ -115,6 +123,10 @@ export class CursosAprobadosPage implements OnInit {
 
   public codigoCursoValido(codigo) {
     return !isNaN(codigo)
+  }
+
+  public guardarCursosAprobados() {
+    this.cursos_aprobados_service.addCurso({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursosAprobados})
   }
 
 }
