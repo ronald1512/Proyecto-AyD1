@@ -38,7 +38,7 @@ export class CursosAprobadosPage implements OnInit {
   array1 = [];//para todos los cursos
   array2 = []; //para cursos ganados por el estudiante
   array3 = [];//para cursos pendientes
-  private cursos_aprobados: object[] = [];
+  private cursos_aprobados: string[] = [];
   private todos: object[] = [];
   constructor(private userService: UserService, private toastCtrl: ToastController, private cursos_aprobados_service: CursosAprobadosService) { }
 
