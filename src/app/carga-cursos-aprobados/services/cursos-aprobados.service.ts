@@ -20,6 +20,10 @@ export class CursosAprobadosService {
     return this.firestore.collection("cursos-aprobados").snapshotChanges();
   }
 
+  getTodos(){
+    return this.firestore.collection("cursos").snapshotChanges();
+  }
+
 
   getCurso(id: string){
     //return this.Collection.doc<CursosAprobados>(id).valueChanges();

@@ -21,6 +21,9 @@
 
     <ion-row>
       <ion-card>
+        <ion-card-header>
+          Cursos ganados
+        </ion-card-header>
         <ion-list>
           <ion-item-sliding  >
 
@@ -28,6 +31,31 @@
 
 
             <ion-item *ngFor="let item of lista">
+              <ion-input  type="text" [(ngModel)]="newItem"> {{item.codigo}} {{item.nombre}}</ion-input>
+              
+            </ion-item>
+           
+
+          </ion-item-sliding>
+        </ion-list>
+      </ion-card>
+
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-card>
+        <ion-card-header>
+          Cursos pendientes
+        </ion-card-header>
+        <ion-list>
+          <ion-item-sliding  >
+
+
+
+
+            <ion-item *ngFor="let item of array1">
               <ion-input  type="text" [(ngModel)]="newItem"> {{item.codigo}} {{item.nombre}}</ion-input>
            
               <br>
@@ -41,6 +69,7 @@
       </ion-card>
 
     </ion-row>
+
 
 
     <br>
