@@ -5,6 +5,7 @@ import { CursosAprobadosService } from '../carga-cursos-aprobados/services/curso
 import { UserService } from '../services/user.service';
 import { User } from '../shared/user.interface';
 import { Cursos_aprobados } from 'src/app/shared/cursos-aprobados.interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cursos-aprobados',
   templateUrl: './cursos-aprobados.page.html',
@@ -47,7 +48,7 @@ export class CursosAprobadosPage implements OnInit {
   private cursos2: any[] = [];
   private todos: object[] = [];
   cursos: Array<Cursos_aprobados> = [];
-  constructor(private userService: UserService, private toastCtrl: ToastController, private cursos_aprobados_service: CursosAprobadosService) { }
+  constructor(private userService: UserService, private toastCtrl: ToastController, private cursos_aprobados_service: CursosAprobadosService, private router: Router) { }
 
   ngOnInit() {
     // this.getCursosAprobados();
@@ -295,6 +296,8 @@ for (let j = 0; j < this.array2.length; j++) {
   obtenerdatoscurso(codigo: string, nombre: String): void {
     if (this.codigoCursoValido(codigo)) {
       this.cursos_aprobados.push(codigo)
+      this.array4.push({codigo: codigo, nombre: nombre})
+      //this.removeItemFromArr(this.array1, {codigo: codigo, nombre: nombre})
       this.toastCtrl.create({
         header: 'Cursos Aprobados',
         message: 'Curso agregado a aprobados',
@@ -322,7 +325,18 @@ for (let j = 0; j < this.array2.length; j++) {
   }
 
   public guardarCursosAprobados() {
-    this.cursos_aprobados_service.addCurso({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursosAprobados})
+    this.toastCtrl.create({
+      header: 'Información Guardada',
+      message: 'Cursos han sido agregados',
+      position: 'bottom',
+      duration: 2000,
+      animated: true
+    }).then((obj) => {
+      obj.present();
+    });
+    console.log({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
+    this.cursos_aprobados_service.addCurso({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
+    this.router.navigate(['home/tab1'])
   }
 
 }
