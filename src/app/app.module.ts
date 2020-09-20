@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from './../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     AngularFirestore,
     StatusBar,
     AngularFirestore,
+    AngularFireAuth,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

@@ -11,6 +11,7 @@ import { CargamasivaService } from './cargamasiva.service';
   });
 });*/
 
+/*
 let cargaMasiva = null;
 
 describe("Carga Masiva Service", () => {
@@ -28,3 +29,4 @@ describe("Carga Masiva Service", () => {
   });
 
 });
+*/
