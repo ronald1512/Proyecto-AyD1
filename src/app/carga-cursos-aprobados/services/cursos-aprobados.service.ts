@@ -61,5 +61,9 @@ export class CursosAprobadosService {
 
   }
   
+  getCursosAprobados2() { 
+  return  this.firestore.collection('cursos-aprobados').snapshotChanges(); 
+
+  }
  
 }
