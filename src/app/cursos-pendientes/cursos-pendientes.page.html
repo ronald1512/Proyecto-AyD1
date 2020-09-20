@@ -19,25 +19,18 @@
     <ion-row>
       <ion-col size="12">
         <ion-list>
-          <ion-item-sliding>
+          
+          
+          <ion-item-sliding *ngFor="let curso of arregloCursos">
             <ion-item>
-              <ion-label>Análisis y Diseño 1</ion-label>
+              <ion-label>{{curso.nombre}}</ion-label>
             </ion-item>
             <ion-item-options side="end">
-              <ion-item-option (click)="console.log('ver')">Ver</ion-item-option>
-              <ion-item-option style="background-color: red" (click)="console.log('eliminar')">Eliminar</ion-item-option>
+              <ion-item-option (click)="presentToastWithOptions(curso.codigo)">Ver</ion-item-option>
             </ion-item-options>
           </ion-item-sliding>
 
-          <ion-item-sliding>
-            <ion-item>
-              <ion-label>Bases de datos 2</ion-label>
-            </ion-item>
-            <ion-item-options side="end">
-              <ion-item-option (click)="alert('prueba')">Ver</ion-item-option>
-              <ion-item-option style="background-color: red" (click)="console.log('eliminar')">Eliminar</ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
+          
         </ion-list>
       </ion-col>
     </ion-row>
