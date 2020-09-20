@@ -44,6 +44,42 @@ const routes: Routes = [
         ]
       },
       {
+        path: "carga-masiva",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../cargamasiva/cargamasiva.module").then(
+                m => m.CargamasivaPageModule
+              )
+          }
+        ]
+      },
+      {
+        path: "carga-cursos-aprobados",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../carga-cursos-aprobados/carga-cursos-aprobados.module").then(
+                m => m.CargaCursosAprobadosPageModule
+              )
+          }
+        ]
+      },
+      {
+        path: "cursos-aprobados",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../cursos-aprobados/cursos-aprobados.module").then(
+                m => m.CursosAprobadosPageModule
+              )
+          }
+        ]
+      },
+      {
         path: "",
         redirectTo: "/home/tab1",
         pathMatch: "full"

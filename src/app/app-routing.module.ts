@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'cursos-aprobados',
+    loadChildren: () => import('./cursos-aprobados/cursos-aprobados.module').then( m => m.CursosAprobadosPageModule)
   }
+
 ];
 
 @NgModule({
