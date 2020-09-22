@@ -38,7 +38,11 @@ const routes: Routes = [
   },{
     path: 'cursos-aprobados',
     loadChildren: () => import('./cursos-aprobados/cursos-aprobados.module').then( m => m.CursosAprobadosPageModule)
+  },  {
+    path: 'crear-horario',
+    loadChildren: () => import('./crear-horario/crear-horario.module').then( m => m.CrearHorarioPageModule)
   }
+
 
 ];
 
