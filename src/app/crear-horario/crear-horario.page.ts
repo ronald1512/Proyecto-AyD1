@@ -16,7 +16,10 @@ export class CrearHorarioPage implements OnInit {
 
   aprobados:CursosAprobados;
   arregloCursos:Curso[]=[];
-  
+  cursos:any[]=[];
+
+  cursosPosibles:Curso[]=[]
+
   curso:Curso={
     codigo:"",
     nombre:"",
@@ -28,9 +31,10 @@ export class CrearHorarioPage implements OnInit {
   constructor(private servicio:CrearHorarioService,public toastController: ToastController) { }
 
   ngOnInit() {
+    this.comparacionCursosPendientes();
   }
 
-  cursosDesbloqueados(){
+  comparacionCursosPendientes(){
 
 
     this.servicio.obtenerCursos().subscribe(res1=>{
@@ -41,11 +45,16 @@ export class CrearHorarioPage implements OnInit {
         let array3=[];
         
         for(let i=0;i<res1.length;i++){
-          array1.push(res1[i].payload.doc.data())
+          let obj=res1[i].payload.doc.data();
+          array1.push(obj)
         }
         
+        
         for(let i=0;i<res2.length;i++){
-          array2.push(res2[i].payload.doc.data())
+          let obj=res2[i].payload.doc.data();
+          array2.push(obj)
+          
+
         }
         
 
@@ -55,6 +64,7 @@ export class CrearHorarioPage implements OnInit {
           //if(array2[i].carnetEstudiante==this.carnet){
             for(let j=0;j<array2[0].cursosAprobados.length;j++){
               array3.push(array2[0].cursosAprobados[j])
+              this.cursos.push(array2[0].cursosAprobados[j]);
             }
           //}
         }
@@ -79,8 +89,7 @@ export class CrearHorarioPage implements OnInit {
           this.arregloCursos.push(this.curso);
 
         }
-        console.log(this.arregloCursos);
-
+        this.cursosDesbloqueados();
 
       })
     })
@@ -88,7 +97,55 @@ export class CrearHorarioPage implements OnInit {
 
   }
 
+  cursosDesbloqueados(){
+    //this.cursos = Cursos aprobados
+    //this.arregloCursos = Cursos pendientes
+    
+    let array=[];
 
+    for(let i=0;i<this.arregloCursos.length;i++){
+      let obj=this.arregloCursos[i].cursospre;
+      
+
+      if(this.cursosPreAprobados(obj)){
+
+        array.push(this.arregloCursos[i]);
+      }
+    }
+    console.log("Cursos Desbloqueados")
+    console.log(array)
+  }
+
+
+  cursosPreAprobados(arreglo:any []):boolean{
+
+
+    if(arreglo.length==0)return true;
+
+    let boolean=false;
+    for(let i=0;i<arreglo.length;i++){
+
+      for(let j=0;j<this.cursos.length;j++){
+        
+       
+        
+
+        if(String(arreglo[i])==String(this.cursos[j])){
+          boolean=true;
+          break;
+        }
+      }
+
+      if(boolean==false){
+        return false;
+      }else{
+        boolean=false;
+      }
+
+    }
+    
+    return true;
+  }
 
 
 }
