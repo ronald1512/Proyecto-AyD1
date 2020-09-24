@@ -8,6 +8,5 @@ export interface CursoHorario {
 export interface Horario {
     id?:string;
     carnetEstudiante:string,
-    cursosAprobados: string[];
     cursos:CursoHorario[]
 }

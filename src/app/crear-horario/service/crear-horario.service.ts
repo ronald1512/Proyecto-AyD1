@@ -52,4 +52,14 @@ export class CrearHorarioService {
     return retorno;
   }
 
+  insertar(data) {
+    return new Promise<any>((resolve, reject) => {
+      this.firestore
+        .collection("horarios")
+        .add(data)
+        .then(res => {}, err => reject(err));
+    });
+  }
+
+
 }

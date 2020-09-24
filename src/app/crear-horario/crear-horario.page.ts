@@ -18,6 +18,17 @@ export class CrearHorarioPage implements OnInit {
   arregloCursos:Curso[]=[];
   cursos:any[]=[];
 
+  cursoHorario:CursoHorario={
+    codigoCurso:"",
+    nombreCurso:"",
+    horaInicio:"",
+    horaFinal:""
+  }
+
+  arregloCursosHorario:CursoHorario[]=[];
+
+
+
   cursosPosibles:Curso[]=[]
 
   curso:Curso={
@@ -145,6 +156,19 @@ export class CrearHorarioPage implements OnInit {
     }
     
     return true;
+  }
+
+  agregarCurso(){
+
+  }
+
+  crearHorario(){
+
+    let horario:Horario={
+    carnetEstudiante:"1",
+    cursos:[]
+    }
+
   }
 
 
