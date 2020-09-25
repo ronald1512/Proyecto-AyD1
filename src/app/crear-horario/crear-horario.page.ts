@@ -18,6 +18,8 @@ export class CrearHorarioPage implements OnInit {
   arregloCursos:Curso[]=[];
   cursos:any[]=[];
 
+
+
   cursoHorario:CursoHorario={
     codigoCurso:"",
     nombreCurso:"",
@@ -164,7 +166,24 @@ export class CrearHorarioPage implements OnInit {
     return true;
   }
 
-  agregarCurso(){
+  agregarCurso(codigo,nombre,horaInicio,horaFinal){
+    this.cursoHorario={
+      codigoCurso:"",
+      nombreCurso:"",
+      horaInicio:"",
+      horaFinal:""
+    }
+
+
+    this.cursoHorario={
+      codigoCurso:codigo,
+      nombreCurso:nombre,
+      horaInicio:horaInicio,
+      horaFinal:horaFinal
+    }
+
+    this.arregloCursosHorario.push(this.cursoHorario);
+
 
   }
 
@@ -174,6 +193,12 @@ export class CrearHorarioPage implements OnInit {
     carnetEstudiante:"1",
     cursos:[]
     }
+
+    for(let i=0;i<this.arregloCursosHorario.length;i++){
+      horario.cursos.push(this.arregloCursosHorario[i])
+    }
+
+    this.servicio.insertar(horario)
 
   }
 
