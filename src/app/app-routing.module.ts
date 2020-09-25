@@ -41,6 +41,10 @@ const routes: Routes = [
   },  {
     path: 'crear-horario',
     loadChildren: () => import('./crear-horario/crear-horario.module').then( m => m.CrearHorarioPageModule)
+  },
+  {
+    path: 'modal-detalle-sitio',
+    loadChildren: () => import('./modal-detalle-sitio/modal-detalle-sitio.module').then( m => m.ModalDetalleSitioPageModule)
   }
 
 

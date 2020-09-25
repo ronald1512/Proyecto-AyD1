@@ -5,7 +5,7 @@ import {Horario} from './service/horario'
 import {CursosAprobados} from '../carga-cursos-aprobados/services/cursos-aprobados.interface'
 import {Curso} from '../cargamasiva/curso.interface'
 
-import { ToastController } from '@ionic/angular';
+import { ToastController,ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crear-horario',
@@ -39,12 +39,18 @@ export class CrearHorarioPage implements OnInit {
     creditospre:""
   };
 
-  constructor(private servicio:CrearHorarioService,public toastController: ToastController) { }
+  constructor(private servicio:CrearHorarioService,public toastController: ToastController,   public modalCtrl : ModalController) { }
 
   ngOnInit() {
     this.comparacionCursosPendientes();
   }
 
+
+  //---METODO PARA MOSTRAR MODAL-----
+  /*muestraSitio(sitio){
+    let modalSitio = this.modalCtrl.create( 'ModalDetalleSitioPage', sitio );
+    modalSitio.present();
+ }*/
   comparacionCursosPendientes(){
 
 
