@@ -1,5 +1,5 @@
 <ion-content>
-
+  
   <ion-grid>
     <ion-row justify-content-center>
       <div class="container">
@@ -7,23 +7,30 @@
       </div>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h2>Iniciar Sesión</h2>
+          <ion-title>
+            <h2>Iniciar Sesión</h2>
+          </ion-title>
+          
         </div>
         <br>
         <div padding>
           <ion-item>
-            <ion-input type="text" #email placeholder="Correo"></ion-input>
+            <ion-input type="text" id="email"  #email placeholder="Correo"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input type="password" #password placeholder="Contraseña"></ion-input>
+            <ion-input type="password" id="password" #password placeholder="Contraseña"></ion-input>
           </ion-item>
         </div>
         <br>
         <br>
         
-        <button class="btn" (click)="onLogin(email, password)">Login</button>
-        <button class="btn" [routerLink]="['/registro']">Registrarme</button>
+        <button class="btn" id="signin-button" (click)="onLogin(email, password)">Login</button>
+        
+        <button class="btn" id="signup-button" (click)="onRegister()">Registrarme</button>
+        <p class="error" text-center style="color: red; text-transform: uppercase;">
+          {{error_message}}
+        </p> 
       </ion-col>
     </ion-row>
     

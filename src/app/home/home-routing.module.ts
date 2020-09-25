@@ -81,14 +81,14 @@ const routes: Routes = [
       },
       {
         path: "",
-        redirectTo: "/home/tab1",
+        redirectTo: "/home/carga-masiva",
         pathMatch: "full"
       }
     ]
   },
   {
     path: "",
-    redirectTo: "/home/tab1",
+    redirectTo: "/home/carga-masiva",
     pathMatch: "full"
   }
 ];
