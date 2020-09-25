@@ -12,3 +12,5 @@ Facebook: https://www.facebook.com/profile.php?id=100008163487070
 
 
 
+Para correr e2e sin que marque error de chrome, ejecuta: 'ng e2e --no-webdriver-update'. Referencia https://stackoverflow.com/questions/59575461/angular-8-ng-e2e-doesnt-work-with-default-chrome-driver
+    - Conviene ejecutar 'npm install' para que no marque errores por las dependencias.
