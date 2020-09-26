@@ -6,10 +6,9 @@ describe('App Organízate', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-  /*
-  it('should be blank', () => {
+
+  it('Title should be blank', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('');
   });
-  */
 });

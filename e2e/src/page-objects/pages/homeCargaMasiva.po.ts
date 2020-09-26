@@ -1,8 +1,19 @@
-import { PageObjectBase } from './base.po';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
-
-export class HomeCargaMasivaPage extends PageObjectBase {
+export class HomeCargaMasivaPage {
   constructor() {
-    super('app-cargamasiva', '/home/carga-masiva');
+  }
+
+  navigateTo() {
+    // Navigate to the carga-masiva page of the app
+    return browser.get('/home/carga-masiva');
+  }
+
+  waitUntilVisible() {
+    browser.wait(ExpectedConditions.visibilityOf(this.rootElement()), 3000);
+  }
+
+  rootElement(){
+    return element(by.css('app-cargamasiva'));
   }
 }

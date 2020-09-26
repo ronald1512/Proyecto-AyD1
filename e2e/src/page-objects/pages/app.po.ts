@@ -6,9 +6,6 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.deepCss('app-root')).getText();
-  }
-  load() {
-    return browser.get('/');
+    return element(by.css('app-root h1')).getText();
   }
 }

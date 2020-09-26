@@ -1,10 +1,8 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
-import { PageObjectBase } from './base.po';
 
-export class MiPerfilPage extends PageObjectBase {
+export class MiPerfilPage {
 
   constructor() {
-    super('app-settings', '/home/perfil');
   }
 
 }

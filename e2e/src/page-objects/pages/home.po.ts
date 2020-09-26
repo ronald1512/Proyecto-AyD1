@@ -1,16 +1,20 @@
-import { PageObjectBase } from './base.po';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 
-export class HomePage extends PageObjectBase {
+export class HomePage {
   constructor() {
-    super('app-home', '/home');
   }
 
   clickPerfil() {
-    this.clickButton('#ir-perfil');
+    const component= element(by.css('app-home'));
+    const el = component.element(by.id('ir-perfil'));
+    browser.wait(ExpectedConditions.elementToBeClickable(el));
+    el.click();
+    browser.sleep(1000);
   }
-
+/*
   clickCargaMasiva() {
     this.clickButton('#ir-carga-masiva');
   }
+  */
 }

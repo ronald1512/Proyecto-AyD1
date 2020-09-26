@@ -12,7 +12,7 @@ import { ErrorHandler } from '@angular/core';
 })
 export class LoginPage implements OnInit {
   toast; loading;
-  error_message;
+  error_message='';
   constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
 
   }
 
-  onRegister(){
+  registro(): void{
     this.router.navigateByUrl('/registro');
   }
 }
