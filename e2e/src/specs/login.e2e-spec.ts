@@ -18,8 +18,8 @@ describe('Login view', () => {
     login = new LoginPage();
   });
 
-  describe('before logged in', () => {
-    it('displays the login screen', () => {
+  describe('Componentes antes de iniciar sesión', () => {
+    it('Muestra la vista de inicio de sesión', () => {
       login.navigateTo();
       expect(login.rootElement().isDisplayed()).toEqual(true);
     });
@@ -27,43 +27,60 @@ describe('Login view', () => {
     it (`Debe tener como título (${expectedTitle})`, ()=>{
       login.navigateTo();
       expect(expectedTitle).toEqual(expectedTitle);
+    });
+
+    
+    it('Debe mostrar el botón de navegación', ()=>{
+      login.navigateTo();
+      expect(login.getRegistrationButton().getText()).toEqual('registro');
+    });
+
+    
+    it('El párrafo de error debe mostrarse sin mensajes de error', ()=>{
+      login.navigateTo();
+      expect(login.getErrorMessage()).toEqual('');
     })
+  })
+
+
+  describe('Navegación antes de iniciar sesión', () => {
     
     
-    it('allows in-app navigation to register', () => {
+    it('Permite navegar hacia la vista registro', () => {
       login.getRegistrationButton().click();
       let page=login.getRegistrationPage();
       expect(page.isDisplayed()).toBeTruthy();
     });
 
-    it('displays the register button content', ()=>{
-      login.navigateTo();
-      expect(login.getRegistrationButton().getText()).toEqual('registro');
-    })
+  });
 
-    it('displays the parragraph content', ()=>{
-      login.navigateTo();
-      expect(login.getErrorMessage()).toEqual('');
-    })
-  
-    it('displays an error message if the login fails', () => {
+
+
+  describe('Fallo de inicio de sesión por credenciales invalidas', () => {
+    it('muestra un error si el inicio de sesión falla', () => {
       login.navigateTo();
       login.enterEmail('organizate@test.com')
       login.enterPassword('organizate');
       login.clickSignIn();
-      expect(login.getErrorMessage()).toEqual('CORREO O CONTRASEÑA INVÁLIDOS');
+      expect(login.getErrorMessage()).toEqual('CORREO O CONTRASEÑA INVÁLIDOS','CORREO O CONTRASEÑA INVÁLIDOS');
     });
+  });
 
-    it('navigates to the tasks page if the login succeeds', () => {
+  describe('Inicio de sesión exitoso', () => {
+    it('Navega a vista de carga masiva si el inicio es exitoso', () => {
       login.navigateTo();
       login.enterEmail('ronald@gmail.com');
       login.enterPassword('ronald123');
       login.clickSignIn();
       const EC = protractor.ExpectedConditions;
       browser.wait(EC.urlContains('home/carga-masiva'), 5000).then(function(result){
-        expect(result).toEqual(true);
+        expect(result).toEqual(true, 'bienvenido ronald@gmail.com');
       });
     });
+  });
+
+  describe('Escenario #4 - Navegación una vez iniciada la sesión', () => {
+
   });
 
   /*
