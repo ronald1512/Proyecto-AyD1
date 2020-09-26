@@ -1,33 +1,14 @@
-<ion-content>
+<ion-title>
+  <h2>Registro</h2>
+</ion-title>
+<input class="user" type="text" name="correo" #email id="email" placeholder="Correo">
+  <!--<ion-input type="text" id="email" #email placeholder="Correo">texto de prueba xd</ion-input>-->
 
-  <ion-grid>
-    <ion-row justify-content-center>
-      <div class="container">
-        <img src="../../assets/img/LOGO_1.png" class="img-slides" />
-      </div>
-      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div text-center>
-          <h2>Registro</h2>
-        </div>
-        <br>
-        <div padding>
-          <ion-item>
-            <ion-input type="text" #email placeholder="Correo"></ion-input>
-          </ion-item>
+<input class="contra" type="password" name="contraseña" id="password" #password placeholder="Contraseña">
 
-          <ion-item>
-            <ion-input type="password" #password placeholder="Contraseña"></ion-input>
-          </ion-item>
-        </div>
-        <br>
-        <br>
-        
-        <button class="btn" (click)="onRegister(email, password)">Registrarme</button>
-        <button class="btn" [routerLink]="['/login']">Login</button>
-      </ion-col>
-    </ion-row>
-    
-    
-  </ion-grid>
+<button class="btn" id="signin-button" (click)="onRegister(email, password)">Registrarme</button>
 
-</ion-content>
+<button class="btn" id="registrationbutton" (click)="login()">Login</button>
+<p text-center style="color: red; text-transform: uppercase;">
+  {{error_message}}
+</p>

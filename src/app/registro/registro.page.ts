@@ -12,18 +12,19 @@ import { Router } from '@angular/router';
 
 export class RegistroPage implements OnInit {
   toast; loading;
-
+  error_message='';
   constructor(private toastCtrl: ToastController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService) { }
 
   ngOnInit() {
   }
 
   async onRegister(email, password){
+    this.error_message='';
     this.loading = await this.loadinCtrl.create({
       message: 'Cargando...',
     })
-    alert(email);
-    console.log(password);
+    //alert(email);
+    //console.log(password);
     this.loading.present();
     const user = await this.authSvc.register(email.value, password.value);
     this.loading.dismiss();
@@ -38,8 +39,9 @@ export class RegistroPage implements OnInit {
       }).then((obj) => {
         obj.present();
       });
-      this.router.navigateByUrl('/home/tab1');
+      this.router.navigateByUrl('/login');
     } else {
+      this.error_message='Correo o contraseña inválidos';
       this.toastCtrl.create({
         header: '¡Incorrecto!',
         message: 'No se pudo crear el usuario',
@@ -50,6 +52,10 @@ export class RegistroPage implements OnInit {
         obj.present();
       });
     }
+  }
+
+  login(){
+    this.router.navigateByUrl('/login');
   }
 
 }
