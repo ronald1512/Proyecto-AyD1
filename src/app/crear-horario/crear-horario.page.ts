@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {CrearHorarioService} from './service/crear-horario.service'
-import {CursoHorario} from './service/horario'
+import {CursoHorario, dia} from './service/horario'
 import {Horario} from './service/horario'
 import {CursosAprobados} from '../carga-cursos-aprobados/services/cursos-aprobados.interface'
 import {Curso} from '../cargamasiva/curso.interface'
-
 import { ToastController,ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-crear-horario',
@@ -16,15 +17,21 @@ export class CrearHorarioPage implements OnInit {
 
   aprobados:CursosAprobados;
   arregloCursos:Curso[]=[];
+  arregloCursos2:Curso[]=[];
+
   cursos:any[]=[];
 
 
+  diaCurso:dia={
+    horaInicio:"",
+    horaFinal:"",
+    dia:""
+  }
 
   cursoHorario:CursoHorario={
     codigoCurso:"",
     nombreCurso:"",
-    horaInicio:"",
-    horaFinal:""
+    dias:[]
   }
 
   arregloCursosHorario:CursoHorario[]=[];
@@ -41,7 +48,7 @@ export class CrearHorarioPage implements OnInit {
     creditospre:""
   };
 
-  constructor(private servicio:CrearHorarioService,public toastController: ToastController,   public modalCtrl : ModalController) { }
+  constructor(private servicio:CrearHorarioService,public toastController: ToastController,   public modalCtrl : ModalController,  private router: Router,private storage: Storage) { }
 
   ngOnInit() {
     this.comparacionCursosPendientes();
@@ -119,8 +126,7 @@ export class CrearHorarioPage implements OnInit {
   cursosDesbloqueados(){
     //this.cursos = Cursos aprobados
     //this.arregloCursos = Cursos pendientes
-    
-    let array=[];
+ 
 
     for(let i=0;i<this.arregloCursos.length;i++){
       let obj=this.arregloCursos[i].cursospre;
@@ -128,11 +134,10 @@ export class CrearHorarioPage implements OnInit {
 
       if(this.cursosPreAprobados(obj)){
 
-        array.push(this.arregloCursos[i]);
+        this.arregloCursos2.push(this.arregloCursos[i]);
       }
     }
     console.log("Cursos Desbloqueados")
-    console.log(array)
   }
 
 
@@ -166,40 +171,92 @@ export class CrearHorarioPage implements OnInit {
     return true;
   }
 
-  agregarCurso(codigo,nombre,horaInicio,horaFinal){
-    this.cursoHorario={
-      codigoCurso:"",
-      nombreCurso:"",
-      horaInicio:"",
-      horaFinal:""
-    }
-
-
-    this.cursoHorario={
-      codigoCurso:codigo,
-      nombreCurso:nombre,
-      horaInicio:horaInicio,
-      horaFinal:horaFinal
-    }
-
-    this.arregloCursosHorario.push(this.cursoHorario);
-
-
+  agregarCurso(codigo,nombre,horaInicio,horaFinal,dias){
+    
+   
   }
 
-  crearHorario(){
+  async crearHorario(){
+
+
+
 
     let horario:Horario={
     carnetEstudiante:"1",
     cursos:[]
     }
 
-    for(let i=0;i<this.arregloCursosHorario.length;i++){
-      horario.cursos.push(this.arregloCursosHorario[i])
+    for(let i=0;i<this.arregloCursos2.length;i++){
+      await this.storage.get('array'+this.arregloCursos2[i].codigo).then((val) => {
+        if(val!=null && val!= undefined){
+          console.log(val)
+          
+
+
+          this.cursoHorario={
+            codigoCurso:"",
+            nombreCurso:"",
+            dias:[]
+          }
+      
+          
+
+          let arraydia=[];
+      
+          for(let j=0;j<val.length;j++){
+            this.diaCurso={
+              horaInicio:"",
+              horaFinal:"",
+              dia:""
+            }
+            this.diaCurso={
+              horaInicio:val[j].inicio,
+              horaFinal:val[j].fin,
+              dia:val[j].value
+            }
+            arraydia.push(this.diaCurso)
+          }
+
+          this.cursoHorario={
+            codigoCurso:this.arregloCursos2[i].codigo,
+            nombreCurso:this.arregloCursos2[i].nombre,
+            dias:arraydia
+          }
+      
+          this.arregloCursosHorario.push(this.cursoHorario);
+
+
+        }
+      });
+
+
+     
+
     }
+
+    console.log("areglo finaaaaaaaaaaaaaaaaaaaaal")
+    console.log(this.arregloCursosHorario)
+    horario.cursos=this.arregloCursosHorario;
+
+    await this.limpiarLocalStorage();
 
     this.servicio.insertar(horario)
 
+  }
+
+  async limpiarLocalStorage(){
+
+    for(let i=0;i<this.arregloCursos2.length;i++){
+      console.log(this.arregloCursos2[i].codigo)
+        this.storage.set('array'+this.arregloCursos2[i].codigo,null);
+    }
+
+  }
+
+  agregarCursoPage(id) {
+    console.log(id)
+    this.storage.set('id-curso',id);
+    this.router.navigate(['/crear-horario/add-curso']);
   }
 
 

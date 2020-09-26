@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: CrearHorarioPage
+  },
+  {
+    path: 'add-curso',
+    loadChildren: () => import('./add-curso/add-curso.module').then( m => m.AddCursoPageModule)
   }
 ];
 

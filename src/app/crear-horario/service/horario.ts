@@ -1,8 +1,12 @@
+export interface dia{
+    horaInicio:string,
+    horaFinal:string,
+    dia:string
+}
 export interface CursoHorario {
     codigoCurso:string,
     nombreCurso:string,
-    horaInicio:string,
-    horaFinal:string
+    dias:dia[]
 }
 
 export interface Horario {
