@@ -1,0 +1,47 @@
+
+
+<ion-header>
+
+
+
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/crear-horario"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{curso.nombre}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="deletePlace()">
+        <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list>
+  
+    <div *ngFor="let checkboxes of Checkboxes">
+    <ion-label>{{checkboxes.value}}</ion-label>  
+    <ion-item>
+      <ion-checkbox slot="start" [(ngModel)]="checkboxes.isItemChecked" (ionChange)="verifyEvent()">
+      </ion-checkbox>
+        <ion-label>Inicio</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="HH:mm" value="00:00" (ionChange)="updateMyDate($event,checkboxes.value,1)"></ion-datetime>
+        <ion-label></ion-label>
+        <ion-label>Fin</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="HH:mm" value="00:00" (ionChange)="updateMyDate($event,checkboxes.value,2)"></ion-datetime>
+    </ion-item>
+      
+    <br/>
+    <br/>
+  </div>
+
+   
+    
+    
+
+    </ion-list>
+
+</ion-content>

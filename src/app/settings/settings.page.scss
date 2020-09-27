@@ -46,7 +46,7 @@ ion-icon {
   text-align: center;
   padding-left: 0px !important;
   padding-right: 0px !important;
-  color: #fff;
+  color: #000;
   font-weight: 800;
 }
 
@@ -65,6 +65,9 @@ ion-icon {
 
 input {
   height: 50px !important;
+  width: 75%;
+  color: #000;
+  font-size: 15px;
 }
 
 p {
@@ -112,6 +115,7 @@ img {
 }
 ion-label {
   font-weight: 600;
+  color: #000;
 }
 ion-card-content {
   padding: 0px !important;

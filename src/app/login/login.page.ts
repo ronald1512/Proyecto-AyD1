@@ -12,14 +12,15 @@ import { ErrorHandler } from '@angular/core';
 })
 export class LoginPage implements OnInit {
   toast; loading;
-
+  error_message='';
   constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
 
   ngOnInit() {
+    //this.error_message="nooo";
   }
 
   async onLogin(email, password) {
-
+    this.error_message='';
     this.loading = await this.loadinCtrl.create({
       message: 'Cargando...',
     })
@@ -30,8 +31,9 @@ export class LoginPage implements OnInit {
     console.log(user);
     console.log('\n!!');
     if (user) {
-      this.router.navigateByUrl('/home/tab1');
+      this.router.navigateByUrl('/home/carga-masiva');
     } else {
+      this.error_message='Correo o contraseña inválidos';
       this.toastCtrl.create({
         header: '¡Incorrecto!',
         message: 'Correo o contraseña inválidos',
@@ -44,5 +46,9 @@ export class LoginPage implements OnInit {
       });
     }
 
+  }
+
+  registro(): void{
+    this.router.navigateByUrl('/registro');
   }
 }

@@ -9,7 +9,8 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'browserName': 'firefox',
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -19,10 +20,13 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
-  onPrepare() {
+  beforeLaunch: function() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
+  },
+  onPrepare() {
+    browser.manage().window().maximize();
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };

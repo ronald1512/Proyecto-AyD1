@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  { path: "", redirectTo: "slide", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   {
     path: "slide",
     loadChildren: () =>
@@ -38,7 +38,18 @@ const routes: Routes = [
   },{
     path: 'cursos-aprobados',
     loadChildren: () => import('./cursos-aprobados/cursos-aprobados.module').then( m => m.CursosAprobadosPageModule)
+  },
+  {
+    path: 'crear-horario',
+    loadChildren: () => import('./crear-horario/crear-horario.module').then( m => m.CrearHorarioPageModule)
+  },
+  {
+    path: 'modal-detalle-sitio',
+    loadChildren: () => import('./modal-detalle-sitio/modal-detalle-sitio.module').then( m => m.ModalDetalleSitioPageModule)
   }
+
+
+
 
 ];
 

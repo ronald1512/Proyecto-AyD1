@@ -1,0 +1,58 @@
+<!-- ============== CODE MADE WITH @LIRRUMS ================ -->
+<ion-content color="light">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <div>
+          <br>
+        </div>
+        <div>
+
+          <h1 style="color: black;">CREAR HORARIO</h1>
+          <button (click)='guardarCursosAprobados()'>Guardar</button>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div>
+          <ion-icon name="home"></ion-icon>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-card>
+        <ion-card-header>
+          Cursos Asignables
+        </ion-card-header>
+        <ion-list>
+          <ion-item-sliding  >
+
+
+
+
+            <ion-item *ngFor="let item of arregloCursos2">
+              <ion-input  type="text" [(ngModel)]="newItem" (click)="agregarCursoPage(item)"> {{item.codigo}} {{item.nombre}}</ion-input>
+              
+            </ion-item>
+           
+
+          </ion-item-sliding>
+        </ion-list>
+      </ion-card>
+
+    </ion-row>
+
+
+
+    
+
+
+
+    <br>
+    <ion-button expand="block" (click)="crearHorario()">Crear Horario</ion-button>
+
+  </ion-grid>
+</ion-content>
+
+<!-- ============== END CODE MADE WITH @LIRRUMS ================ -->
