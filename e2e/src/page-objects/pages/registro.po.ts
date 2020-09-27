@@ -1,13 +1,13 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
 
-export class LoginPage {
+export class RegistroPage {
   constructor() {
   }
 
   navigateTo() {
-    // Navigate to the login page of the app
-    return browser.get('/login');
+    return browser.get('/registro');
   }
+
   waitForError() {
     browser.wait(
       ExpectedConditions.presenceOf(element(by.css('.error'))),
@@ -15,48 +15,42 @@ export class LoginPage {
     );
   }
 
-
   //aqui vamos a poner toda la lógica para encontrar los elementos
   rootElement(){
-    return element(by.css('app-login'));
+    return element(by.css('app-registro'));
   }
 
   getHeadingText(){
     return element(by.css('app-login > ion-title h2'));
   }
 
-  getRegistrationButton(){
-    return element(by.id('registrationbutton'))
+  getLoginButton(){
+    return element(by.id('loginnbutton'))
 
   }
 
-  getRegistrationPage(){
-    return element(by.css('app-registro'));
-  }
-
-  getCargaMasivaPage(){
-    return element(by.css('app-cargamasiva'));
+  getLoginPage(){
+    return element(by.css('app-login'));
   }
 
   enterEmail(correo:string){
-    const el = element(by.css('app-login > .user'));
+    const el = element(by.css('app-registro > .user'));
     el.sendKeys(correo);
   }
 
   enterPassword(password:string){
-    const el = element(by.css('app-login > .contra'));
+    const el = element(by.css('app-registro > .contra'));
     el.sendKeys(password);
   }
 
-  clickSignIn(){
-    const el = element(by.id('signin-button'));
+  clickSignUp(){
+    const el = element(by.id('signup-button'));
     browser.wait(ExpectedConditions.elementToBeClickable(el));
     el.click();
     browser.sleep(1000);
   }
 
   getErrorMessage(){
-    return element(by.css('app-login p')).getText();
+    return element(by.css('app-registro p')).getText();
   }
-
 }
