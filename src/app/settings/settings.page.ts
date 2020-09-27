@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { User } from '../models/user.interface'
 import { UserService } from '../services/user.service';
 import { from } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-settings',
@@ -45,24 +46,31 @@ export class SettingsPage implements OnInit {
     }
   }
 
-  async fineAlert() {
-    const alert = await this.alertController.create({
+  fineAlert() {
+
+    let mensaje = document.getElementById('mensajeGuardar');
+    mensaje.innerHTML = 'Satisfactorio';
+    /*const alert = await this.alertController.create({
       header: 'Satisfactorio',
       subHeader: 'Datos correctos',
       message: 'Datos personales modificados satisfactoriamente',
       buttons: ['OK']
     });
-    await alert.present();
+    await alert.present();*/
   }
 
-  async failAlert() {
-    const alert = await this.alertController.create({
+  failAlert() {
+
+    let mensaje = document.getElementById('mensajeGuardar');
+    mensaje.innerHTML = 'Denegado';
+
+    /*const alert = await this.alertController.create({
       header: 'DENEGADO',
       subHeader: 'Datos incorrectos',
       message: 'El correo debe contener @ y el nombre debe ser de mas de un caracter.',
       buttons: ['OK']
     });
-    await alert.present();
+    await alert.present();*/
   }
 
   public static checkemail(email:string):boolean{
