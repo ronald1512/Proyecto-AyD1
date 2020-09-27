@@ -4,7 +4,7 @@ import { HomePage } from '../page-objects/pages/home.po';
 import { browser, by, element } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 
-describe('Perfil view', () => {
+describe('Historia - Perfil', () => {
   let login: LoginPage;
   let perfil: MiPerfilPage;
   let menu: HomePage;

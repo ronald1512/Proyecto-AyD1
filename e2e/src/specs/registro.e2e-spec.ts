@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 import { RegistroPage } from '../page-objects/pages/registro.po';
 
-describe('', () => {
+describe('Historia - Registro', () => {
     let registro: RegistroPage;
 
     beforeEach(() => {
