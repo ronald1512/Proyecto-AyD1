@@ -4,6 +4,7 @@ Feature: Ver y actualizar mis datos personales
 Scenario: Deseo ver mis datos personales
     Given He iniciado sesión en mi cuenta
     And Estoy en la página de perfil
+    When Se carga la página
     Then Veo mis datos personales
 
 Scenario: Actualizar mi nombre
@@ -11,7 +12,7 @@ Scenario: Actualizar mi nombre
     And Estoy en la página de perfil
     And Ingreso un nombre en la casilla de nombre
     And El nombre contiene por lo menos 1 caracter
-    And Hago click en el botón de "GUARDAR CAMBIOS"
+    When Hago click en el botón de "GUARDAR CAMBIOS"
     Then Mi nombre es actualizado
 
 Scenario: Actualizar mi correo
@@ -19,14 +20,14 @@ Scenario: Actualizar mi correo
     And Estoy en la página de perfil
     And Ingreso un correo en la casilla de correo
     And El correo tiene el formato correcto
-    And Hago click en el botón de "GUARDAR CAMBIOS"
+    When Hago click en el botón de "GUARDAR CAMBIOS"
     Then Mi correo es actualizado
 
-    Scenario: Actualizar mi nombre y correo
+Scenario: Actualizar mi nombre y correo
     Given He iniciado sesión en mi cuenta
     And Estoy en la página de perfil
     And Ingreso un nombre en la casilla de nombre
     And Ingreso un correo en la casilla de correo
     And El correo tiene el formato correcto
-    And Hago click en el botón de "GUARDAR CAMBIOS"
+    When Hago click en el botón de "GUARDAR CAMBIOS"
     Then Mi correo es actualizado

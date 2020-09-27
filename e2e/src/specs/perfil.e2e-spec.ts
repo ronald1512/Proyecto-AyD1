@@ -22,29 +22,65 @@ describe('Perfil view', () => {
   });
 
 
-  describe('Ver datos personales', () => {
+  describe('Feature: Ver y actualizar mis datos personales', () => {
     
-    it('Comprobar el titulo del perfil', () => {
+    const definicion_escenario1=`
+        Scenario: Deseo ver mis datos personales
+            Given: He iniciado sesión en mi cuenta
+            And: Estoy en la página de perfil
+            When Se carga la página
+            Then: Se deben mostrar mis datos personales
+    `;
+
+    it(definicion_escenario1, () => {
         expect(perfil.getHeadingText()).toEqual(expectedTitle);
-    });
-    
-    it('Comprobar el correo', () => {
         expect(perfil.getCorreoText()).toEqual("chechajosue1@gmail.com");
     });
 
-    it('Actualizar nombre', () => {
+    const definicion_escenario2=`
+        Scenario: Actualizar mi nombre
+            Given: He iniciado sesión en mi cuenta
+            And: Estoy en la página de perfil
+            And: Ingreso un nombre en la casilla de nombre
+            And: El nombre contiene por lo menos 1 caracter
+            When: Hago click en el botón de "GUARDAR CAMBIOS"
+            Then: Mi nombre es actualizado
+    `;
+
+    it(definicion_escenario2, () => {
         perfil.navigateTo();
         perfil.enterNombre('Josué');
         perfil.clickGuardarCambios();
         expect(perfil.getMensaje()).toEqual("Satisfactorio");
     });
 
-    it('Actualizar correo', () => {
+    const definicion_escenario3=`
+        Scenario: Actualizar mi correo
+            Given: He iniciado sesión en mi cuenta
+            And: Estoy en la página de perfil
+            And: Ingreso un correo en la casilla de correo
+            And: El correo tiene el formato correcto
+            When: Hago click en el botón de "GUARDAR CAMBIOS"
+            Then: Mi correo es actualizado
+    `;
+
+    it(definicion_escenario3, () => {
         perfil.navigateTo();
         perfil.enterCorreo('chechaj@protonmail.com');
         perfil.clickGuardarCambios();
         expect(perfil.getMensaje()).toEqual("Satisfactorio");
     });
+
+    const definicion_escenario4=`
+        Scenario: Actualizar mi nombre y correo
+            Given: He iniciado sesión en mi cuenta
+            And: Estoy en la página de perfil
+            And: Ingreso un nombre en la casilla de nombre
+            And: Ingreso un correo en la casilla de correo
+            And: El correo tiene el formato correcto
+            When: Hago click en el botón de "GUARDAR CAMBIOS"
+            Then: Mi correo es actualizado
+    `;
 
     it('Actualizar correo y nombre', () => {
         perfil.navigateTo();
