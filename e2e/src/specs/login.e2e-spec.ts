@@ -7,7 +7,7 @@ import { HomeCargaMasivaPage } from '../page-objects/pages/homeCargaMasiva.po';
 import { browser, by, element } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 
-describe('Login view', () => {
+describe('Historia - Inicio de sesión', () => {
   let login: LoginPage;
   let homeCargaMasiva: HomeCargaMasivaPage;
   let perfil: MiPerfilPage;
@@ -18,56 +18,55 @@ describe('Login view', () => {
     login = new LoginPage();
   });
 
-  describe('Componentes antes de iniciar sesión', () => {
-    it('Muestra la vista de inicio de sesión', () => {
+  describe('Feature: Como usuario quiero acceder a la aplicación', () => {
+    const definicion_escenario1=`
+      Scenario: Abro la aplicación
+        Given: El usuario ingresa a la url de la aplicación
+        When: Se carga la aplicación
+        Then: Se debe mostrar la vista de inicio de sesión, el botón de navegación y el párrafo de error debe mostrarse sin errores de error.
+    `
+    it(definicion_escenario1, () => {
       login.navigateTo();
       expect(login.rootElement().isDisplayed()).toEqual(true);
-    });
-
-    it (`Debe tener como título (${expectedTitle})`, ()=>{
       login.navigateTo();
       expect(expectedTitle).toEqual(expectedTitle);
-    });
-
-    
-    it('Debe mostrar el botón de navegación', ()=>{
       login.navigateTo();
       expect(login.getRegistrationButton().getText()).toEqual('registro');
-    });
-
-    
-    it('El párrafo de error debe mostrarse sin mensajes de error', ()=>{
       login.navigateTo();
       expect(login.getErrorMessage()).toEqual('');
-    })
-  })
-
-
-  describe('Navegación antes de iniciar sesión', () => {
-    
-    
-    it('Permite navegar hacia la vista registro', () => {
+    });
+    const definicion_escenario2=`
+      Scenario: Navegar hacia la vista de registro
+        Given: El usuario se encuentra en la vista login
+        When: Presiona el botón 'registro'
+        Then: Se debe mostrar la vista de Registro
+    `
+    it(definicion_escenario2, () => {
       login.getRegistrationButton().click();
       let page=login.getRegistrationPage();
       expect(page.isDisplayed()).toBeTruthy();
     });
 
-  });
-
-
-
-  describe('Fallo de inicio de sesión por credenciales invalidas', () => {
-    it('muestra un error si el inicio de sesión falla', () => {
+    const definicion_escenario3=`
+      Scenario: Credenciales invalidas
+        Given: El usuario agrega credenciales inválidas a los campos
+        When: Presiona el botón 'signin'
+        Then: Se debe mostrar el mensaje 'CORREO O CONTRASEÑA INVÁLIDOS'
+    `
+    it(definicion_escenario3, () => {
       login.navigateTo();
       login.enterEmail('organizate@test.com')
       login.enterPassword('organizate');
       login.clickSignIn();
       expect(login.getErrorMessage()).toEqual('CORREO O CONTRASEÑA INVÁLIDOS','CORREO O CONTRASEÑA INVÁLIDOS');
     });
-  });
-
-  describe('Inicio de sesión exitoso', () => {
-    it('Navega a vista de carga masiva si el inicio es exitoso', () => {
+    const definicion_escenario4=`
+      Scenario: Inicio de sesión exitoso
+        Given: El usuario agrega credenciales válidas a los campos
+        When: Presiona el botón 'signin'
+        Then: Se debe mostrar navegar a vista de carga masiva
+    `
+    it(definicion_escenario4, () => {
       login.navigateTo();
       login.enterEmail('ronald@gmail.com');
       login.enterPassword('ronald123');
@@ -77,11 +76,8 @@ describe('Login view', () => {
         expect(result).toEqual(true, 'bienvenido ronald@gmail.com');
       });
     });
-  });
+  })
 
-  describe('Escenario #4 - Navegación una vez iniciada la sesión', () => {
-
-  });
 
   /*
   describe('once logged in', () => {
