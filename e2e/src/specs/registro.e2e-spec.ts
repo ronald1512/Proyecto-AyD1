@@ -2,19 +2,19 @@ import { browser, by, element } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
 import { RegistroPage } from '../page-objects/pages/registro.po';
 
-describe('Escenarios Registro', () => {
+describe('', () => {
     let registro: RegistroPage;
 
     beforeEach(() => {
         registro = new RegistroPage();
     });
 
-    describe('Preparando Escenarios', () => {
+    describe('Feature: Como un estudiante quiero crear un usuario para acceder a la aplicación', () => {
         const definicion_escenario1 = `
-        Escenario 1
-            Given: Dado que el usuario no ingresa sus credenciales en el formulario.
-            When: Cuando hace clic en el botón 'Registrarme'.
-            Then: Se debe mostrar el mensaje de error.
+        Scenario: No ingresar datos al formulario
+            Given Dado que el usuario no ingresa sus credenciales en el formulario.
+            When Cuando hace clic en el botón 'Registrarme'.
+            Then Se debe mostrar el mensaje de error.
         `
         it(definicion_escenario1, () => {
             registro.navigateTo();
@@ -26,10 +26,10 @@ describe('Escenarios Registro', () => {
         });
 
         const definicion_escenario2 = `
-        Escenario 2
-            Given: Dado que el usuario prefiere no crear un usuario y regresar a la pantalla de 'login'
-            When: Cuando hace clic en el botón 'Login'.
-            Then: Se debe cambiar de página.
+        Scenario: Regresar a la pantalla de login
+            Given Dado que el usuario prefiere no crear un usuario y regresar a la pantalla de 'login'
+            When Cuando hace clic en el botón 'Login'.
+            Then Se debe cambiar de página.
         `
 
         it(definicion_escenario2, () => {
@@ -40,10 +40,10 @@ describe('Escenarios Registro', () => {
         });
 
         const definicion_escenario3 = `
-        Escenario 3
-            Given: Dado que el usuario ingresa solo su correo.
-            When: Cuando hace clic en el botón 'Registrarme'.
-            Then: Se debe mostrar el mensaje de error.
+        Scenario: Ingresar unicamente el correo en el formulario
+            Given Dado que el usuario ingresa solo su correo.
+            When Cuando hace clic en el botón 'Registrarme'.
+            Then Se debe mostrar el mensaje de error.
         `
 
         it(definicion_escenario3, () => {
@@ -55,10 +55,10 @@ describe('Escenarios Registro', () => {
         });
 
         const definicion_escenario4 = `
-        Escenario 4
-            Given: Dado que el usuario ingresa sus credenciales en el formulario.
-            When: Cuando hace clic en el botón 'Registrarme'.
-            Then: Se debe mostrar la página de 'login'.
+        Scenario: Ingresar ambos datos al formulario
+            Given Dado que el usuario ingresa sus credenciales en el formulario.
+            When Cuando hace clic en el botón 'Registrarme'.
+            Then Se debe mostrar la página de 'login'.
         `
 
         it(definicion_escenario4, () => {
