@@ -27,7 +27,6 @@ export class LoginPage {
 
   getRegistrationButton(){
     return element(by.id('registrationbutton'))
-
   }
 
   getRegistrationPage(){
