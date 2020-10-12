@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'modal-detalle-sitio',
     loadChildren: () => import('./modal-detalle-sitio/modal-detalle-sitio.module').then( m => m.ModalDetalleSitioPageModule)
+  },  {
+    path: 'notas-personales',
+    loadChildren: () => import('./notas-personales/notas-personales.module').then( m => m.NotasPersonalesPageModule)
   }
+
 
 
 
