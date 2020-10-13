@@ -23,7 +23,7 @@ export class VerNotaPage implements OnInit {
   }
 
   guardarNota() {
-
+    console.log('Guardar nota...');
   }
 
   
