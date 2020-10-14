@@ -7,6 +7,9 @@ import {Curso} from '../cargamasiva/curso.interface'
 import { ToastController,ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { User } from '../shared/user.interface';
+import { UserService } from '../services/user.service';
+import { forkJoin, from, VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-crear-horario',
@@ -14,7 +17,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./crear-horario.page.scss'],
 })
 export class CrearHorarioPage implements OnInit {
-
+  user: User= {uid:'', email:'', displayName:''};
   aprobados:CursosAprobados;
   arregloCursos:Curso[]=[];
   arregloCursos2:Curso[]=[];
@@ -48,9 +51,15 @@ export class CrearHorarioPage implements OnInit {
     creditospre:""
   };
 
-  constructor(private servicio:CrearHorarioService,public toastController: ToastController,   public modalCtrl : ModalController,  private router: Router,private storage: Storage) { }
+  constructor(private userService: UserService,private servicio:CrearHorarioService,public toastController: ToastController,   public modalCtrl : ModalController,  private router: Router,private storage: Storage) { }
 
   ngOnInit() {
+    let response = this.userService.getCurrentUser().then(function (firebaseUser) {
+      console.log("Encontrado!");
+      return firebaseUser;
+    });
+    const observable= from(response);
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
     this.comparacionCursosPendientes();
   }
 
@@ -87,12 +96,12 @@ export class CrearHorarioPage implements OnInit {
 
 
         for(let i=0;i<array2.length;i++){
-          //if(array2[i].carnetEstudiante==this.carnet){
+          if(array2[i].carnetEstudiante==this.user.email){
             for(let j=0;j<array2[0].cursosAprobados.length;j++){
               array3.push(array2[0].cursosAprobados[j])
               this.cursos.push(array2[0].cursosAprobados[j]);
             }
-          //}
+          }
         }
 
         let tmp=this.servicio.comparacionCursos(array1,array3)
@@ -182,7 +191,7 @@ export class CrearHorarioPage implements OnInit {
 
 
     let horario:Horario={
-    carnetEstudiante:"1",
+      correoEstudiante:"1",
     cursos:[]
     }
 
