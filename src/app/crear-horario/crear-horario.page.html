@@ -26,16 +26,17 @@
           Cursos Asignables
         </ion-card-header>
         <ion-list>
-          <ion-item-sliding  >
+          <ion-item-sliding>
 
 
 
 
             <ion-item *ngFor="let item of arregloCursos2">
-              <ion-input  type="text" [(ngModel)]="newItem" (click)="agregarCursoPage(item)"> {{item.codigo}} {{item.nombre}}</ion-input>
-              
+              <ion-input type="text" [(ngModel)]="newItem" (click)="agregarCursoPage(item)"> {{item.codigo}}
+                {{item.nombre}}</ion-input>
+
             </ion-item>
-           
+
 
           </ion-item-sliding>
         </ion-list>
@@ -45,9 +46,14 @@
 
 
 
-    
 
 
+
+    <br>
+    <ion-item>
+      <ion-checkbox color="primary"></ion-checkbox>
+    <ion-label>Correo de Confirmación</ion-label>
+    </ion-item>
 
     <br>
     <ion-button expand="block" (click)="crearHorario()">Crear Horario</ion-button>
