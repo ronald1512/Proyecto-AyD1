@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recuperar-pass.page.scss'],
 })
 export class RecuperarPassPage implements OnInit {
-
+  name:string;
   constructor() { }
 
   ngOnInit() {
+    console.log(this.name)
+  }
+
+  enviarcorreo(correo) {
+console.log("LLAMANDO A CORREO")
+    console.log(correo)
   }
 
 }

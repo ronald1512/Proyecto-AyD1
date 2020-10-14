@@ -17,4 +17,8 @@ import { RecuperarPassPage } from './recuperar-pass.page';
   ],
   declarations: [RecuperarPassPage]
 })
-export class RecuperarPassPageModule {}
+export class RecuperarPassPageModule {
+ 
+ 
+
+}
