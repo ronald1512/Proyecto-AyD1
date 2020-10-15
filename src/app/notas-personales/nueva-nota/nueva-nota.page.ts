@@ -3,6 +3,9 @@ import { ToastController, LoadingController } from "@ionic/angular";
 import { ServicioNotasService } from "../service/servicio-notas.service";
 import { Nota } from "../nota";
 import { Router } from "@angular/router";
+import { User } from '../../models/user.interface';
+import { UserService } from '../../services/user.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: "app-nueva-nota",
@@ -10,16 +13,30 @@ import { Router } from "@angular/router";
   styleUrls: ["./nueva-nota.page.scss"],
 })
 export class NuevaNotaPage implements OnInit {
+  user: User= {uid:'', email:'', displayName:''};
   titulo_nota: string;
   contenido_nota: string;
 
   constructor(
     private toastCtrl: ToastController,
     private servicioNotas: ServicioNotasService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.actualizarCurrent();
+  }
+
+  actualizarCurrent(){
+    let response = this.userService.getCurrentUser().then(function (firebaseUser) {
+      console.log("Encontrado!");
+      return firebaseUser;
+    });
+
+    const observable= from(response);
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
+  }
 
   guardarNota() {
     console.log("Titulo: ", this.titulo_nota);
@@ -27,7 +44,7 @@ export class NuevaNotaPage implements OnInit {
 
     let nueva: Nota = {
       titulo: this.titulo_nota,
-      carnetEstudiante: "1",
+      uid: this.user.uid,
       contenido: this.contenido_nota,
     };
 
@@ -60,6 +77,8 @@ export class NuevaNotaPage implements OnInit {
       obj.present();
     });
 
+    
     this.router.navigateByUrl('/notas-personales');
+
   }
 }

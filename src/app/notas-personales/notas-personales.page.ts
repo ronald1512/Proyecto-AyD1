@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Nota } from './nota';
+import { UserService } from '../services/user.service';
+import { from } from 'rxjs';
+import { User } from '../models/user.interface';
+import { ServicioNotasService } from './service/servicio-notas.service';
 
 @Component({
   selector: 'app-notas-personales',
@@ -9,39 +13,24 @@ import { Nota } from './nota';
 })
 export class NotasPersonalesPage implements OnInit {
 
-  notas: Nota[] = [];
+  user: User= {uid:'', email:'', displayName:''};
+  notas: Nota [] = [];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private servicio: ServicioNotasService,
+  ) { }
 
-  ngOnInit() {
-    this.notas.push(
-      {
-        titulo: "nota1",
-        carnetEstudiante: "201709155",
-        fecha: "12/10/2020",
-        contenido: "Primera Nota"
-      }
-    );
+  async ngOnInit() {
+    let uid = await this.servicio.getUsuario();
+    console.log('Recuperando notas del uid: ', uid);
+    this.notas = await this.servicio.getNotas(uid);
+    console.log(this.notas);
+  }
 
-    this.notas.push(
-      {
-        titulo: "nota2",
-        carnetEstudiante: "201709155",
-        fecha: "12/10/2020",
-        contenido: "Segunda Nota"
-      }
-    );
-
-    this.notas.push(
-      {
-        titulo: "nota3",
-        carnetEstudiante: "201709155",
-        fecha: "12/10/2020",
-        contenido: "Terrcera Nota"
-      }
-    );
-
-
+  actualizarNotas(){
+    
   }
 
   nuevaNota() {
@@ -52,7 +41,6 @@ export class NotasPersonalesPage implements OnInit {
     console.log(obj)
     localStorage.setItem("nota",JSON.stringify(obj));
     this.router.navigate(['/notas-personales/ver-nota']);
-
   }
 
 }

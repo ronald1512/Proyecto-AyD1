@@ -1,6 +1,5 @@
 export interface Nota {
-    id?:string,
     titulo:string,
-    carnetEstudiante: string,
+    uid: string,
     contenido:string
 }

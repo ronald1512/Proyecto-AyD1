@@ -11,8 +11,7 @@ export class VerNotaPage implements OnInit {
 
   nota: Nota = {
     titulo: "",
-    carnetEstudiante: "",
-    fecha: "",
+    uid: "",
     contenido: ""
   };
 

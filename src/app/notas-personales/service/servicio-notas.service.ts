@@ -1,44 +1,52 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { from } from "rxjs";
+import { User } from "src/app/models/user.interface";
+import { UserService } from "src/app/services/user.service";
+import { Nota } from "../nota";
 
 @Injectable({
   providedIn: "root",
 })
 export class ServicioNotasService {
-  constructor(private firestore: AngularFirestore) {}
+  user: User = { uid: "", email: "", displayName: "" };
 
-  getNotas() {
-    return this.firestore.collection("notas-personales").snapshotChanges();
+  constructor(
+    private firestore: AngularFirestore,
+    private userService: UserService
+  ) {}
+
+  getUsuario() {
+    return this.userService.getCurrentUser().then(function (firebaseUser) {
+      return firebaseUser.uid;
+    });
+  }
+
+  getNotas(uid) {
+    let notas: Nota [] = [];
+
+    let notasdb = this.firestore.collection("/notas-personales", (ref) =>
+      ref.where("uid", "==", uid)
+    );
+    notasdb.snapshotChanges().forEach((a) => {
+      a.forEach((item) => {
+        //console.log();
+        notas.push({
+          titulo: item.payload.doc.data().titulo,
+          contenido: item.payload.doc.data().contenido,
+          uid: item.payload.doc.data().uid,
+        });
+        //cursos.push({carnetEstudiante: item.payload.doc.data().carnetEstudiante, cursosAprobados:item.payload.doc.data().cursosAprobados});
+      });
+    });
+    
+    return notas;
   }
 
   async getNota(docId: string) {
     let document = await this.firestore.doc(docId).get().toPromise();
     return document.data();
   }
-
-  /*comparacionCursos(arreglo1: any[], arreglo2: any[]): any[] {
-    //Arreglo1 = arreglo cursos de sistemas
-    //Arreglo2= arreglo de cursos aprobados
-    let booleano = 0;
-    let retorno = [];
-
-    for (let i = 0; i < arreglo1.length; i++) {
-      for (let j = 0; j < arreglo2.length; j++) {
-        if (arreglo1[i].codigo == arreglo2[j]) {
-          booleano = 1;
-          break;
-        }
-      }
-
-      if (booleano == 0) {
-        retorno.push(arreglo1[i]);
-      } else {
-        booleano = 0;
-      }
-    }
-
-    return retorno;
-  }*/
 
   insertarNota(data) {
     return new Promise<any>((resolve, reject) => {
@@ -51,5 +59,4 @@ export class ServicioNotasService {
         );
     });
   }
-
 }
