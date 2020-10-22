@@ -42,3 +42,6 @@ Jenkins
 
 ## Documentación de la metodología
 Scrum
+
+## Comandos importantes 
+ng e2e --no-webdriver-update
