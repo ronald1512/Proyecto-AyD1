@@ -1,38 +1,14 @@
 
-<ion-header>
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Recuperar Password</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-title>
+  <h2>Recuperar Password</h2>
+  <h6>Ingresa tu dirección de correo y llegará un mensaje con la información </h6>
+</ion-title>
+<input  class="user" type="text" name="correo" #email id="email" placeholder="Correo">
+  <!--<ion-input type="text" id="email" #email placeholder="Correo">texto de prueba xd</ion-input>-->
 
-<ion-content>
-  <ion-grid>
+<button class="btn" id="Enviarbutton" (click)="enviarcorreo(email)">Enviar</button>
 
-
-    <ion-row>
-      <ion-col size="12">
-        <label class="subtitle-txt" style="color: black;">Ingresa tu dirección de correo y llegará un mensaje con la información </label>
-      </ion-col>
-    </ion-row>
-
-
-    <br>
-
-    <ion-row>
-      <ion-col size="12">
-
-        
-        <ion-item>
-          <ion-input placeholder="Correo Electrónico" [(ngModel)]="name"></ion-input>
-        </ion-item>
-        <ion-button shape="round" (click)="enviarcorreo(name)">Enviar</ion-button>
-
-      </ion-col>
-    </ion-row>
-
-    
-  </ion-grid>
-</ion-content>
+<button class="btn" id="Regresarbutton" (click)="login()">Regresar</button>
+<p text-center style="color: red; text-transform: uppercase;">
+  {{error_message}}
+</p>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recuperar-pass',
@@ -7,15 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecuperarPassPage implements OnInit {
   name:string;
-  constructor() { }
+  error_message='';
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.name)
+    //console.log(this.name)
+    this.error_message = ''
   }
 
   enviarcorreo(correo) {
-console.log("LLAMANDO A CORREO")
-    console.log(correo)
+    if(!this.name){
+      this.error_message='No se ingreso correo!';
+    }else{
+      console.log("LLAMANDO A CORREO")
+      console.log(this.name)
+      this.router.navigateByUrl('/login');
+    }
+  }
+
+  login(){
+    this.router.navigateByUrl('/login');
   }
 
 }
