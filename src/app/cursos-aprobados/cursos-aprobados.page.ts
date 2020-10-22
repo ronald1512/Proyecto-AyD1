@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CursosAprobadosPage implements OnInit {
   user: User = { uid: '', email: '', displayName: '' };   //aqui voy a tener los datos del usuario actual
+  newItem: string;
   lista: Array<any> = [
     {
       codigo: "017",

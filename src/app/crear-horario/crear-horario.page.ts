@@ -18,6 +18,7 @@ export class CrearHorarioPage implements OnInit {
   aprobados:CursosAprobados;
   arregloCursos:Curso[]=[];
   arregloCursos2:Curso[]=[];
+  newItem:string;
 
   cursos:any[]=[];
 
