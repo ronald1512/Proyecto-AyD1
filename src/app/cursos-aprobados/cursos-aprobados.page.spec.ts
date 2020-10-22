@@ -8,7 +8,7 @@ let cursosAprobados = null;
 describe('CursosAprobadosPage', () => {
 
   beforeAll(() => {
-    cursosAprobados = new CursosAprobadosPage(new ToastController());
+    //cursosAprobados = new CursosAprobadosPage(new ToastController());
   });
 
   it('deberia ser falso', () => {
