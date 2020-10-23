@@ -3,7 +3,7 @@
   <h2>Recuperar Password</h2>
   <h6>Ingresa tu dirección de correo y llegará un mensaje con la información </h6>
 </ion-title>
-<input  class="user" type="text" name="correo" #email id="email" placeholder="Correo">
+<input  class="user" type="text" name="correo" #email id="email" [(ngModel)]="name" placeholder="Correo">
   <!--<ion-input type="text" id="email" #email placeholder="Correo">texto de prueba xd</ion-input>-->
 
 <button class="btn" id="Enviarbutton" (click)="enviarcorreo(email)">Enviar</button>
