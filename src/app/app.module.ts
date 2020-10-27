@@ -17,6 +17,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 
 import { FormsModule } from '@angular/forms';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireAuth,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    EmailComposer
   ],
   bootstrap: [AppComponent]
 })

@@ -56,6 +56,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: "crear-horario",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../crear-horario/crear-horario.module").then(
+                m => m.CrearHorarioPageModule
+              )
+          }
+        ]
+      },
+      {
         path: "carga-cursos-aprobados",
         children: [
           {
