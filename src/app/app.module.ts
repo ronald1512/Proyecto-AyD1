@@ -15,7 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { IonicStorageModule } from '@ionic/storage';
 
-
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
@@ -30,6 +30,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
+    HttpClientModule,
     IonicStorageModule.forRoot()
   ],
   providers: [

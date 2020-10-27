@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage';
 import { User } from '../shared/user.interface';
 import { UserService } from '../services/user.service';
 import { forkJoin, from, VirtualTimeScheduler } from 'rxjs';
+import { HttpClient  } from '@angular/common/http';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 @Component({
   selector: 'app-crear-horario',
@@ -54,7 +55,7 @@ export class CrearHorarioPage implements OnInit {
     creditospre: ""
   };
 
-  constructor(private emailComposer:EmailComposer,private userService: UserService, private servicio: CrearHorarioService, public toastController: ToastController, public modalCtrl: ModalController, private router: Router, private storage: Storage) { }
+  constructor(private http: HttpClient,private emailComposer:EmailComposer,private userService: UserService, private servicio: CrearHorarioService, public toastController: ToastController, public modalCtrl: ModalController, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
     let response = this.userService.getCurrentUser().then(function (firebaseUser) {
@@ -210,8 +211,9 @@ export class CrearHorarioPage implements OnInit {
             nombreCurso: "",
             dias: []
           }
-
-
+          cadenaeviarcorreo+="----------------------------------------------------"
+          cadenaeviarcorreo+="\nCódigo Curso: "+ this.arregloCursos2[i].codigo+"\n"
+          cadenaeviarcorreo+="Nombre Curso: "+ this.arregloCursos2[i].nombre+"\n"
 
           let arraydia = [];
 
@@ -225,10 +227,15 @@ export class CrearHorarioPage implements OnInit {
               horaInicio: val[j].inicio,
               horaFinal: val[j].fin,
               dia: val[j].value
+
+
             }
+            cadenaeviarcorreo+="Dia "+val[j].value+"\n"
+            cadenaeviarcorreo+="Hora Inicio: "+ val[j].inicio+"\n"
+            cadenaeviarcorreo+="Hora Fin: "+  val[j].inicio+"\n\n"
             arraydia.push(this.diaCurso)
           }
-
+          cadenaeviarcorreo+="\n"
           this.cursoHorario = {
             codigoCurso: this.arregloCursos2[i].codigo,
             nombreCurso: this.arregloCursos2[i].nombre,
@@ -252,7 +259,7 @@ export class CrearHorarioPage implements OnInit {
     console.log("SE LE VA ENVIAR CORREO A EL USUARIO" + this.user.email)
     //probando enviar correo
     
-    this.emailComposer.isAvailable().then((available: boolean) => {
+  /*  this.emailComposer.isAvailable().then((available: boolean) => {
       if (available) {
         this.sendMail();
         console.log("si se envio el correo")
@@ -260,14 +267,38 @@ export class CrearHorarioPage implements OnInit {
         
         console.log("ALGO FALLO AL ENVIAR EL CORREO")
       }
-    });
+    });*/
 
-
-    
+    // console.log(JSON.stringify(horario.cursos))
+    console.log("LA CADENA A ENVIAR EN EL CORREO ES "+cadenaeviarcorreo)
     await this.limpiarLocalStorage();
-
+    console.log(JSON.stringify(horario))
     this.servicio.insertar(horario)
 
+
+//-------------prueba http------
+let data = {
+  correo: this.user.email,
+  mensaje:cadenaeviarcorreo
+};
+
+//this.http.post
+
+this.http.post('http://104.154.129.242:9000/envio', data).pipe(
+ // map(res => res.json())
+).subscribe(response => {
+  console.log('POST Response:', response);
+});
+
+
+
+    //-----muestro un toast---------
+    let toast = this.toastController.create({
+      message: 'Se ha enviado un correo con la información de su horario!!',
+      duration: 4000,
+      position: 'top'
+    });
+    (await toast).present()
   }
 
   async limpiarLocalStorage() {
