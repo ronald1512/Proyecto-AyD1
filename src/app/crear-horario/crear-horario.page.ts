@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 import { User } from '../shared/user.interface';
 import { UserService } from '../services/user.service';
 import { forkJoin, from, VirtualTimeScheduler } from 'rxjs';
-
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 @Component({
   selector: 'app-crear-horario',
   templateUrl: './crear-horario.page.html',
@@ -51,7 +51,7 @@ export class CrearHorarioPage implements OnInit {
     creditospre: ""
   };
 
-  constructor(private userService: UserService, private servicio: CrearHorarioService, public toastController: ToastController, public modalCtrl: ModalController, private router: Router, private storage: Storage) { }
+  constructor(private emailComposer:EmailComposer,private userService: UserService, private servicio: CrearHorarioService, public toastController: ToastController, public modalCtrl: ModalController, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
     let response = this.userService.getCurrentUser().then(function (firebaseUser) {
@@ -187,7 +187,7 @@ export class CrearHorarioPage implements OnInit {
 
   async crearHorario() {
 
-
+    let cadenaeviarcorreo = ""
 
 
     let horario: Horario = {
@@ -247,6 +247,20 @@ export class CrearHorarioPage implements OnInit {
     console.log(this.arregloCursosHorario)
     horario.cursos = this.arregloCursosHorario;
     console.log("SE LE VA ENVIAR CORREO A EL USUARIO" + this.user.email)
+    //probando enviar correo
+    
+    this.emailComposer.isAvailable().then((available: boolean) => {
+      if (available) {
+        this.sendMail();
+        console.log("si se envio el correo")
+      }else {
+        
+        console.log("ALGO FALLO AL ENVIAR EL CORREO")
+      }
+    });
+
+
+    
     await this.limpiarLocalStorage();
 
     this.servicio.insertar(horario)
@@ -268,5 +282,21 @@ export class CrearHorarioPage implements OnInit {
     this.router.navigate(['/crear-horario/add-curso']);
   }
 
+  //funcion para enviar el correo
+  sendMail() {
+    let email = {
+      to: this.user.email,
+      subject: 'Cordova Icons',
+      body: 'How are you? Nice greetings from Leipzig',
+      isHtml: true
+    };
+    // Send a text message using default options
+    this.emailComposer.open(email);
+  }
+
+prueba(){
+
+  
+}
 
 }
