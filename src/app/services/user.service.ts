@@ -10,6 +10,15 @@ import { map,first } from 'rxjs/operators';
 })
 export class UserService {
 
+  user: User = {uid: '', email:'', displayName: '', rol: ''};
+
+  /*
+uid: string;
+    email: string;
+    displayName: string;
+    rol: string;
+  */
+
   constructor(private afAuth?: AngularFireAuth, private firestore?: AngularFirestore) { 
     /*
     if(db){
@@ -35,7 +44,7 @@ export class UserService {
     usersCollection = this.firestore.collection('users'); 
     usersCollection.snapshotChanges().forEach( a => {
       a.forEach( item => {
-        usuarios.push({uid: item.payload.doc.data().uid, email:item.payload.doc.data().email, displayName: item.payload.doc.data().displayName });
+        usuarios.push({uid: item.payload.doc.data().uid, email:item.payload.doc.data().email, displayName: item.payload.doc.data().displayName, rol: item.payload.doc.data().rol });
       });
     });
 
@@ -66,5 +75,11 @@ export class UserService {
     return this.firestore.collection("users").doc(id).update(user);
   }
 
-
+  async esAdmin():boolean {
+    var uid = await this.getCurrentUser().then(function (firebaseUser) {
+      return firebaseUser.uid;
+    });
+    
+    return false;
+  }
 }
