@@ -46,15 +46,15 @@ describe('Component: Notas personales', () => {
 
   it('Debe recuperar un uid del usuario autenticado',()=>{
     spyOn(service, 'getUsuario').and.callFake(()=>{
-      return null;
+      return null; 
     })
     expect(service.getUsuario()).toEqual(null);
   });
 
   it('Debe recuperar las notas del usuario loggeado',()=>{
     spyOn(service, 'getNotas').and.callFake(function(place){
-      return [];
-    });
+      return []; 
+    }); 
     expect(service.getNotas('123')).toEqual([]);
   });
 
