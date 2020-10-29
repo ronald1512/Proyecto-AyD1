@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Nota } from './nota';
-import { UserService } from '../services/user.service';
 import { from } from 'rxjs';
 import { User } from '../models/user.interface';
 import { ServicioNotasService } from './service/servicio-notas.service';
@@ -18,7 +17,6 @@ export class NotasPersonalesPage implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private servicio: ServicioNotasService,
   ) { }
 
@@ -29,8 +27,12 @@ export class NotasPersonalesPage implements OnInit {
     console.log(this.notas);
   }
 
-  actualizarNotas(){
-    
+  usuarioRegistrado(){
+    return this.servicio.getUsuario();
+  }
+  
+  getNotas(){
+    return this.servicio.getNotas('123');
   }
 
   nuevaNota() {
@@ -41,6 +43,10 @@ export class NotasPersonalesPage implements OnInit {
     console.log(obj)
     localStorage.setItem("nota",JSON.stringify(obj));
     this.router.navigate(['/notas-personales/ver-nota']);
+  }
+  
+  isSaved():boolean{
+    return !!localStorage.getItem('nota');
   }
 
 }
