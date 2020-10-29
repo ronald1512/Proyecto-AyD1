@@ -32,7 +32,7 @@ export class NotasPersonalesPage implements OnInit {
   }
   
   getNotas(){
-    return this.servicio.getNotas('123');
+    return this.servicio.getNotas('123'); 
   }
 
   nuevaNota() {
