@@ -54,7 +54,7 @@ export class CrearHorarioPage implements OnInit {
     creditospre: ""
   };
 
-  constructor(private emailComposer:EmailComposer,private userService: UserService, private servicio: CrearHorarioService, public toastController: ToastController, public modalCtrl: ModalController, private router: Router, private storage: Storage) { }
+  constructor(private emailComposer:EmailComposer,private userService: UserService, private servicio: CrearHorarioService, public toastController?: ToastController, public modalCtrl?: ModalController, private router?: Router, private storage?: Storage) { }
 
   ngOnInit() {
     let response = this.userService.getCurrentUser().then(function (firebaseUser) {
@@ -270,23 +270,24 @@ export class CrearHorarioPage implements OnInit {
 
   }
 
-  async limpiarLocalStorage() {
+  limpiarLocalStorage():boolean {
 
     for (let i = 0; i < this.arregloCursos2.length; i++) {
       console.log(this.arregloCursos2[i].codigo)
       this.storage.set('array' + this.arregloCursos2[i].codigo, null);
     }
-
+    return true;
   }
 
   agregarCursoPage(id) {
     console.log(id)
     this.storage.set('id-curso', id);
     this.router.navigate(['/crear-horario/add-curso']);
+    return true;
   }
 
   //funcion para enviar el correo
-  sendMail() {
+  sendMail():boolean {
     let email = {
       to: this.user.email,
       subject: 'Cordova Icons',
@@ -295,6 +296,7 @@ export class CrearHorarioPage implements OnInit {
     };
     // Send a text message using default options
     this.emailComposer.open(email);
+    return true;
   }
 
 prueba(){
