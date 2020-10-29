@@ -32,9 +32,9 @@ export class ServicioNotasService {
       a.forEach((item) => {
         //console.log();
         notas.push({
-          titulo: item.payload.doc.data().titulo,
-          contenido: item.payload.doc.data().contenido,
-          uid: item.payload.doc.data().uid,
+          titulo: JSON.parse(JSON.stringify(item.payload.doc.data())).titulo,
+          contenido: JSON.parse(JSON.stringify(item.payload.doc.data())).contenido,
+          uid: JSON.parse(JSON.stringify(item.payload.doc.data())).uid,
         });
         //cursos.push({carnetEstudiante: item.payload.doc.data().carnetEstudiante, cursosAprobados:item.payload.doc.data().cursosAprobados});
       });

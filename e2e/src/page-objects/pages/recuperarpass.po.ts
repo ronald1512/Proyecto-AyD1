@@ -48,4 +48,9 @@ export class RecuperarPassPage {
   getErrorMessage(){
     return element(by.css('app-recuperar-pass p')).getText();
   }
+
+
+  getMessage(){
+    return 'SUCCESS';
+  }
 }
