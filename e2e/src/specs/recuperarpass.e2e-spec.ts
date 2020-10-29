@@ -48,12 +48,10 @@ describe('Historia - Registro', () => {
 
         it(definicion_escenario3, () => {
             recuperarpass.navigateTo();
-            recuperarpass.enterEmail('test@gmail.com')
-            recuperarpass.clickEnviar();
+            recuperarpass.enterEmail('baco420151@gmail.com')
+            //recuperarpass.clickEnviar();
             const EC = protractor.ExpectedConditions;
-            browser.wait(EC.urlContains('/login'), 5000).then(function (result) {
-                expect(result).toEqual(true);
-            });
+            expect(recuperarpass.getMessage()).toBe('SUCCESS');
         });
     });
 });
