@@ -7,18 +7,5 @@ describe('RecuperarPassPage', () => {
   let component: RecuperarPassPage;
   let fixture: ComponentFixture<RecuperarPassPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RecuperarPassPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
 
-    fixture = TestBed.createComponent(RecuperarPassPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

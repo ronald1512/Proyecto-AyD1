@@ -7,18 +7,4 @@ describe('NuevaNotaPage', () => {
   let component: NuevaNotaPage;
   let fixture: ComponentFixture<NuevaNotaPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NuevaNotaPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(NuevaNotaPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
