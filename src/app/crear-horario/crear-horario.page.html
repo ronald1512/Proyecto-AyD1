@@ -8,7 +8,7 @@
         </div>
         <div>
 
-          <h1 style="color: black;">CREAR HORARIO</h1>
+          <h1 style="color: black;" id="headingHorario">CREAR HORARIO</h1>
           <button>Guardar</button>
         </div>
       </ion-col>
@@ -31,8 +31,8 @@
 
 
 
-            <ion-item *ngFor="let item of arregloCursos2">
-              <ion-input type="text" [(ngModel)]="newItem" (click)="agregarCursoPage(item)"> {{item.codigo}}
+            <ion-item *ngFor="let item of arregloCursos2; index as i">
+              <ion-input type="text" [(ngModel)]="newItem" id="id-{{i}}" (click)="agregarCursoPage(item)"> {{item.codigo}}
                 {{item.nombre}}</ion-input>
 
             </ion-item>

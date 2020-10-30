@@ -3,7 +3,7 @@ import { protractor } from 'protractor/built/ptor';
 import { RecuperarPassPage } from '../page-objects/pages/recuperarpass.po';
 
 
-describe('Historia - Registro', () => {
+describe('Historia - Recuperar contraseña', () => {
     let recuperarpass: RecuperarPassPage;
 
     beforeEach(() => {

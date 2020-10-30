@@ -22,7 +22,7 @@ describe('Historia - Notas Personales', () => {
   });
 
 
-  describe('Feature: Ver y crear notas personales', () => {
+  describe('Feature: Como usuario quiero ver y crear notas personales', () => {
     
     const definicion_escenario1=`
         Scenario: Deseo consultar mis notas
@@ -54,43 +54,7 @@ describe('Historia - Notas Personales', () => {
       });
     });
 
-    /*
-    const definicion_escenario3=`
-        Scenario: Actualizar mi correo
-            Given: He iniciado sesión en mi cuenta
-            And: Estoy en la página de perfil
-            And: Ingreso un correo en la casilla de correo
-            And: El correo tiene el formato correcto
-            When: Hago click en el botón de "GUARDAR CAMBIOS"
-            Then: Mi correo es actualizado
-    `;
-
-    it(definicion_escenario3, () => {
-        notas.navigateTo();
-        notas.enterCorreo('chechaj@protonmail.com');
-        notas.clickGuardarCambios();
-        expect(notas.getMensaje()).toEqual("Satisfactorio");
-    });
-
-    const definicion_escenario4=`
-        Scenario: Actualizar mi nombre y correo
-            Given: He iniciado sesión en mi cuenta
-            And: Estoy en la página de perfil
-            And: Ingreso un nombre en la casilla de nombre
-            And: Ingreso un correo en la casilla de correo
-            And: El correo tiene el formato correcto
-            When: Hago click en el botón de "GUARDAR CAMBIOS"
-            Then: Mi correo es actualizado
-    `;
-
-    it('Actualizar correo y nombre', () => {
-        notas.navigateTo();
-        notas.enterNombre('César Josué');
-        notas.enterCorreo('chechaj@protonmail.com');
-        notas.clickGuardarCambios();
-        expect(notas.getMensaje()).toEqual("Satisfactorio");
-    });
-    */
+    
 });
   
 });
