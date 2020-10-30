@@ -91,6 +91,8 @@ uid: string;
     this.getCurrentUser().then((usuarioF) => {
       if (!usuarioF) {
         admin = false;
+    console.log('esAdmin',admin)
+    localStorage.setItem('esAdmin',JSON.stringify(false));
         return;
       }
       
@@ -104,11 +106,13 @@ uid: string;
       usuario.snapshotChanges().forEach((a) => {
         a.forEach((item) => {
           admin = item.payload.doc.data().rol == "admin";
+          localStorage.setItem('esAdmin',JSON.stringify(admin));
           console.log("admin", admin);
         });
       });
     });
-
+    console.log('esAdmin',admin)
+    localStorage.setItem('esAdmin',JSON.stringify(false));
     return admin;
   }
 }
