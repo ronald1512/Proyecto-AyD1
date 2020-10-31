@@ -13,7 +13,7 @@ import { from } from 'rxjs';
   styleUrls: ["./nueva-nota.page.scss"],
 })
 export class NuevaNotaPage implements OnInit {
-  user: User= {uid:'', email:'', displayName:''};
+  user: User= {uid:'', email:'', displayName:'', rol: 'estudiante'};
   titulo_nota: string;
   contenido_nota: string;
 
@@ -35,7 +35,7 @@ export class NuevaNotaPage implements OnInit {
     });
 
     const observable= from(response);
-    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName, rol: 'estudiante'}));
   }
 
   guardarNota() {

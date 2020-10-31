@@ -12,7 +12,7 @@ import { ServicioNotasService } from './service/servicio-notas.service';
 })
 export class NotasPersonalesPage implements OnInit {
 
-  user: User= {uid:'', email:'', displayName:''};
+  user: User= {uid:'', email:'', displayName:'', rol: 'estudiante'};
   notas: Nota [] = [];
 
   constructor(

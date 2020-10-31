@@ -9,7 +9,7 @@ import { Nota } from "../nota";
   providedIn: "root",
 })
 export class ServicioNotasService {
-  user: User = { uid: "", email: "", displayName: "" };
+  user: User = { uid: "", email: "", displayName: "", rol: 'estudiante'};
 
   constructor(
     private firestore: AngularFirestore,
