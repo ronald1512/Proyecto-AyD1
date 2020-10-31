@@ -72,7 +72,7 @@ describe('Historia - Inicio de sesión', () => {
       login.enterPassword('ronald123');
       login.clickSignIn();
       const EC = protractor.ExpectedConditions;
-      browser.wait(EC.urlContains('home/carga-masiva'), 5000).then(function(result){
+      browser.wait(EC.urlContains('home/perfil'), 5000).then(function(result){
         expect(result).toEqual(true, 'bienvenido ronald@gmail.com');
       });
     });
