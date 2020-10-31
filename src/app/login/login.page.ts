@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from '../shared/user.interface';
+import { User } from '../models/user.interface';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 import { ErrorHandler } from '@angular/core';
-
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,7 +13,7 @@ import { ErrorHandler } from '@angular/core';
 export class LoginPage implements OnInit {
   toast; loading;
   error_message='';
-  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
+  constructor(private userService: UserService,private toastCtrl: ToastController, private alertCtrl: AlertController, private loadinCtrl: LoadingController, private router: Router, private authSvc: AuthService, private alertController: AlertController) { }
 
   ngOnInit() {
     //this.error_message="nooo";
@@ -31,7 +31,10 @@ export class LoginPage implements OnInit {
     console.log(user);
     console.log('\n!!');
     if (user) {
-      this.router.navigateByUrl('/home/carga-masiva');
+        //let bool=await this.userService.esAdmin();
+        
+        this.router.navigateByUrl('/home/perfil');
+      
     } else {
       this.error_message='Correo o contraseña inválidos';
       this.toastCtrl.create({

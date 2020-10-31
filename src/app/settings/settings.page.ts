@@ -12,7 +12,7 @@ import { element } from 'protractor';
 })
 
 export class SettingsPage implements OnInit {
-  user: User= {uid:'', email:'', displayName:''};
+  user: User= {uid:'', email:'', displayName:'',rol:""};
   usuarios: Array<User>=[];
   constructor(public alertController: AlertController, private userService: UserService) { } 
 
@@ -28,7 +28,7 @@ export class SettingsPage implements OnInit {
     });
 
     const observable= from(response);
-    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName}));
+    observable.subscribe(res => (this.user={uid: res.uid, email: res.email, displayName:res.displayName,rol:""}));
   }
 
 

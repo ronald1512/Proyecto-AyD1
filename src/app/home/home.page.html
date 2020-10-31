@@ -1,27 +1,31 @@
 <!-- ============== CODE MADE WITH @LIRRUMS ================ -->
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="light">
-    <ion-tab-button id="ir-carga-masiva" tab="carga-masiva" >
+    <ion-tab-button id="ir-carga-masiva" (click)="cargaMasiva()" >
       <ion-icon name="cloud"></ion-icon>
       Cargar pensum
     </ion-tab-button>
 
-    <ion-tab-button tab="carga-cursos-aprobados">
+
+    <ion-tab-button  (click)="estudiante('/home/carga-cursos-aprobados')" >
       <ion-icon name="cloud-upload"></ion-icon>
       Cargar aprobados
     </ion-tab-button>
-    <ion-tab-button tab="cursos-aprobados">
+    <ion-tab-button  (click)="estudiante('/home/cursos-aprobados')" >
       <ion-icon name="checkmark"></ion-icon>
       Administrar aprobados
     </ion-tab-button>
-    <ion-tab-button tab="crear-horario">
-      <ion-icon name="checkmark"></ion-icon>
+    <ion-tab-button  (click)="estudiante('/home/crear-horario')" >
+      <ion-icon name="calendar"></ion-icon>
       Crear horario
     </ion-tab-button>
-    <ion-tab-button id="ir-perfil" tab="perfil">
-      <ion-icon name="person"></ion-icon>
-      Mi Perfil
+    <ion-tab-button  (click)="estudiante('/home/notas-personales')" >
+      <ion-icon name="book"></ion-icon>
+      Ver Notas
     </ion-tab-button>
+
+
+  
   </ion-tab-bar>
 </ion-tabs>
 <!-- ============== END CODE MADE WITH @LIRRUMS ================ -->
