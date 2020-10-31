@@ -17,7 +17,7 @@ import { User } from '../shared/user.interface';
 export class CargaCursosAprobadosPage implements OnInit {
   user: User= {uid:'', email:'', displayName:''};   //aqui voy a tener los datos del usuario actual
   curso:CursosAprobados={
-    carnetEstudiante:"",
+    correoEstudiante:"",
     cursosAprobados:[]
     };
 
@@ -58,7 +58,7 @@ export class CargaCursosAprobadosPage implements OnInit {
     //Falta agregar carnet obtenido de LocalStorage
     //console.log(this.auth.currentUser)
       
-      this.curso={carnetEstudiante:this.user.uid, cursosAprobados:[]};  //el uid es el identificador para cada usuario
+      this.curso={correoEstudiante:this.user.email, cursosAprobados:[]};  //el uid es el identificador para cada usuario
 
       var cursos=CargaCursosAprobadosPage.separarCadena(text);
 
@@ -98,10 +98,10 @@ export class CargaCursosAprobadosPage implements OnInit {
   /*comprobarExistencia(){
     this.cursoService.getCursos().subscribe(async res=>{
       var bool1=false;
-      this.curso.carnetEstudiante="201709155"
+      this.curso.correoEstudiante="201709155"
       //Cambiar el carnet quemado por el carnet del usuario logueado
       for(let i=0;i<res.length;i++){
-        if(res[i].carnetEstudiante=="201709155"){
+        if(res[i].correoEstudiante=="201709155"){
           bool1=true;
           break;
         }

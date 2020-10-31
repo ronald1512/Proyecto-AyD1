@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CursosAprobadosPage implements OnInit {
   user: User = { uid: '', email: '', displayName: '' };   //aqui voy a tener los datos del usuario actual
+  newItem: string;
   lista: Array<any> = [
     {
       codigo: "017",
@@ -35,7 +36,7 @@ export class CursosAprobadosPage implements OnInit {
 
   ]
 
-  cursosAprobados;  //aqui estan todas las filas de 'cursos-aprobados'. Para mostrar solo los del usuario actual usa ~ngIf="carnetEstudiante==user.uid" dentro de un *ngFor 
+  cursosAprobados;  //aqui estan todas las filas de 'cursos-aprobados'. Para mostrar solo los del usuario actual usa ~ngIf="correoEstudiante==user.uid" dentro de un *ngFor 
   array1 = [];//para todos los cursos
   //ARRAYS PIVOTES PARA OBTENER LOS CURSOS APROBADOS POR EL ESTUDIANTE
   array2 = [];
@@ -95,7 +96,7 @@ export class CursosAprobadosPage implements OnInit {
 
 
 
-        if (this.array2[j].carnetEstudiante == user.uid) {
+        if (this.array2[j].correoEstudiante == user.email) {
                  console.log("ENTRE AL FOR")
           for (let k = 0; k < this.array2[j].cursosAprobados.length; k++) {
             this.array3.push(this.array2[j].cursosAprobados[k]);
@@ -105,7 +106,7 @@ export class CursosAprobadosPage implements OnInit {
         }
 
       }
-      // console.log("EL ARRAY DE APROBADOS 2 " + this.array2[0].carnetEstudiante);
+      // console.log("EL ARRAY DE APROBADOS 2 " + this.array2[0].correoEstudiante);
 
 
     });
@@ -204,7 +205,7 @@ for (let j = 0; j < this.array2.length; j++) {
 
 
 
-  if (this.array2[j].carnetEstudiante == user.uid) {
+  if (this.array2[j].correoEstudiante == user.uid) {
            console.log("ENTRE AL FOR")
     for (let k = 0; k < this.array2[j].cursosAprobados.length; k++) {
       this.array3.push(this.array2[j].cursosAprobados[k]);
@@ -334,8 +335,8 @@ for (let j = 0; j < this.array2.length; j++) {
     }).then((obj) => {
       obj.present();
     });
-    console.log({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
-    this.cursos_aprobados_service.addCurso({id: this.user.uid, carnetEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
+    console.log({id: this.user.uid, correoEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
+    this.cursos_aprobados_service.addCurso({id: this.user.uid, correoEstudiante: this.user.uid, cursosAprobados: this.cursos_aprobados})
     this.router.navigate(['home/tab1'])
   }
 

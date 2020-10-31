@@ -5,7 +5,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class CrearHorarioService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore?: AngularFirestore) { }
 
   obtenerCursosAprobados(){
     return this.firestore.collection("cursos-aprobados").snapshotChanges();

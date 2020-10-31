@@ -16,8 +16,9 @@ describe('CursosPendientesPage', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
-
+/*
   it('Crear componente', () => {
     expect(component).toBeTruthy();
   });
+  */
 });

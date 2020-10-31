@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -22,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'cargamasiva',
-    loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
+    loadChildren: () => import('./cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'carga-cursos-aprobados',
@@ -46,7 +48,11 @@ const routes: Routes = [
   {
     path: 'modal-detalle-sitio',
     loadChildren: () => import('./modal-detalle-sitio/modal-detalle-sitio.module').then( m => m.ModalDetalleSitioPageModule)
+  },  {
+    path: 'notas-personales',
+    loadChildren: () => import('./notas-personales/notas-personales.module').then( m => m.NotasPersonalesPageModule)
   }
+
 
 
 

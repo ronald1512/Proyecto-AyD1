@@ -3,6 +3,8 @@ import { Curso} from './curso.interface';
 import { CargamasivaService } from './services/cargamasiva.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -20,9 +22,12 @@ export class CargamasivaPage implements OnInit {
     creditospre:""
   };
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private cursoService: CargamasivaService, private loadingController: LoadingController) { }
+  constructor(private userService: UserService,private route: ActivatedRoute, private nav: NavController, private cursoService: CargamasivaService, private loadingController: LoadingController,private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let bool=await this.userService.esAdmin();
+
+    if(bool==false) this.router.navigateByUrl('/home/perfil');
   }
 
   file: File;
