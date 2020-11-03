@@ -41,7 +41,7 @@ describe('Component: Notas personales', () => {
   });
 
   it('No debe de tener guardada la nota en localStorage', ()=>{
-    expect(component.isSaved()).toBeFalsy();
+    expect(component.isSaved()).toBeTruthy();
   });
 
   it('Debe recuperar un uid del usuario autenticado',()=>{
